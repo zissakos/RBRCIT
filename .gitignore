@@ -1,0 +1,6 @@
+.hg
+.hgignore
+.hgtags
+Debug/
+Release/
+*.suo
