@@ -1,4 +1,3 @@
-# RBRCIT
 RBRCIT - RBR Car Installation Tool for RBR 1.02 SSE
 ===================================================================
 
