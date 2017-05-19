@@ -9,6 +9,8 @@ The vehicle model and NGP Physics of each vehicle in this list
 can be downloaded with just a click.
 
 Usage:
+- Unzip the "RBRCIT v1.x.x.zip" into your RBR root folder!
+- Start the RBRCIT.exe
 - On startup the tool reads the currently installed cars and 
   shows them in the right panel in gray color. Any change you make 
   will be displayed in black. The "Apply" button will be enabled only 
