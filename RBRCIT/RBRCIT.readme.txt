@@ -33,6 +33,10 @@ Usage:
   always hide some parts, there are parameters in RBRCIT.ini for that.
 - When done, hit "Apply".
 
+Plugins:
+You can download and update the NGP and FixUp plugin easily 
+with the corresponding buttons.
+
 Check the "Tools" and "Downloads" menus for 
  - updating the carList.ini file
  - downloading missing physics (especially after cars have been 
