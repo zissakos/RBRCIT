@@ -533,13 +533,20 @@ namespace RBRCIT
 
         public void DownloadCarModel(Car c)
         {
-            DownloadJob job = new DownloadJob();
-            job.title = c.manufacturer + " " + c.name;
-            job.URL = c.link_model;
-            job.path = "Cars\\";
-            FormDownload fd = new FormDownload(job);
-            fd.FormClosed += FormDownloadClosedAllCars;
-            fd.Show();
+            if (c.link_model != null)
+            {
+                DownloadJob job = new DownloadJob();
+                job.title = c.manufacturer + " " + c.name;
+                job.URL = c.link_model;
+                job.path = "Cars\\";
+                FormDownload fd = new FormDownload(job);
+                fd.FormClosed += FormDownloadClosedAllCars;
+                fd.Show();
+            }
+            else
+            {
+                Process.Start("http://www.ly-racing.de/viewtopic.php?t=7878");
+            }
         }
 
         public void DownloadCarPhysics(Car c)
