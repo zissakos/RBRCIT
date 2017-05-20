@@ -8,6 +8,9 @@ This file serves as the internal "database" of vehicles.
 The vehicle model and NGP Physics of each vehicle in this list 
 can be downloaded with just a click.
 
+![Example Screenshot](https://rawgit.com/zissakos/RBRCIT/master/rbrcit.png)
+
+
 Usage:
 - On startup the tool reads the currently installed cars and 
   shows them in the right panel in gray color. Any change you make 
