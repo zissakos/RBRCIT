@@ -53,5 +53,8 @@ Check the "Tools" and "Downloads" menus for
 
 Version History
 ---------------------------------------------------------------------
+1.0.1 2017-05-20
+	* fixed: crash when clicking on a download link of a car with undefined model link
+
 1.0.0 2017-05-19
 	* initial version
