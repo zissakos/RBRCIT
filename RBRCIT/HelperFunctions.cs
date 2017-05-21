@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace RBRCIT
 {
-    public class HelperFunctions
+    public static class HelperFunctions
     {
 
 
@@ -71,6 +71,13 @@ namespace RBRCIT
         }
 
 
+        public static void ShowAtCenterParent(this Form form, Form parent)
+        {
+            form.StartPosition = FormStartPosition.Manual;
+            form.Top = (parent.Top + (parent.Height / 2)) - form.Height / 2;
+            form.Left = (parent.Left + (parent.Width / 2)) - form.Width / 2;
+            form.Show();
+        }
 
 
 

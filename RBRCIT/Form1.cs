@@ -386,7 +386,7 @@ namespace RBRCIT
         private void btSaveList_Click(object sender, EventArgs e)
         {
             FormSaveList fsl = new FormSaveList();
-            if (fsl.ShowDialog() == DialogResult.OK)
+            if (fsl.ShowDialog(this) == DialogResult.OK)
             {
                 rbrcit.SaveCarList(fsl.ListName);
             }
@@ -562,7 +562,8 @@ namespace RBRCIT
 
         private void MenuAbout_Click(object sender, EventArgs e)
         {
-            new FormAbout(rbrcit.GetRBRCITVersion()).Show();
+            FormAbout fa = new FormAbout(rbrcit.GetRBRCITVersion());
+            fa.ShowAtCenterParent(this);
         }
     }
 }

@@ -541,7 +541,7 @@ namespace RBRCIT
                 job.path = "Cars\\";
                 FormDownload fd = new FormDownload(job);
                 fd.FormClosed += FormDownloadClosedAllCars;
-                fd.Show();
+                fd.ShowAtCenterParent(mainForm);
             }
             else
             {
@@ -557,7 +557,7 @@ namespace RBRCIT
             job.path = "RBRCIT\\physics\\";
             FormDownload fd = new FormDownload(job);
             fd.FormClosed += FormDownloadClosedAllCars;
-            fd.Show();
+            fd.ShowAtCenterParent(mainForm);
         }
 
         public void DownloadMissingPhysics()
@@ -581,7 +581,7 @@ namespace RBRCIT
             }
             FormDownload fd = new FormDownload(jobs);
             fd.FormClosed += FormDownloadClosedAllCars;
-            fd.Show();
+            fd.ShowAtCenterParent(mainForm);
         }
 
         public bool PluginExistsNGP()
@@ -606,7 +606,7 @@ namespace RBRCIT
             dj.URL = carlist_ini.GetParameterValue("plugin_physics_url", "Plugins");
             FormDownload fd = new FormDownload(dj);
             fd.FormClosed += FormDownloadClosedNGP;
-            fd.Show();
+            fd.ShowAtCenterParent(mainForm);
         }
 
         public bool PluginExistsFixUp()
@@ -631,7 +631,7 @@ namespace RBRCIT
             dj.URL = carlist_ini.GetParameterValue("plugin_fixup_url", "Plugins");
             FormDownload fd = new FormDownload(dj);
             fd.FormClosed += FormDownloadClosedPlugin;
-            fd.Show();
+            fd.ShowAtCenterParent(mainForm);
         }
 
         private void FormDownloadClosedAllCars(object sender, FormClosedEventArgs e)
