@@ -8,10 +8,12 @@ This file serves as the internal "database" of vehicles.
 The vehicle model and NGP Physics of each vehicle in this list 
 can be downloaded with just a click.
 
-![Example Screenshot](https://rawgit.com/zissakos/RBRCIT/master/rbrcit.png)
+VIDEO: http://www.youtube.com/watch?v=Kd8T38kvY_A
+
+![Screenshot](https://rawgit.com/zissakos/RBRCIT/master/rbrcit.png)
 
 
-Usage:
+## Usage:
 - On startup the tool reads the currently installed cars and 
   shows them in the right panel in gray color. Any change you make 
   will be displayed in black. The "Apply" button will be enabled only 
@@ -34,7 +36,7 @@ Usage:
   always hide some parts, there are parameters in RBRCIT.ini for that.
 - When done, hit "Apply".
 
-Check the "Tools" and "Downloads" menus for 
+### Check the "Tools" and "Downloads" menus for 
  - updating the carList.ini file
  - downloading missing physics (especially after cars have been 
    added to the carList.ini)
@@ -42,6 +44,6 @@ Check the "Tools" and "Downloads" menus for
  - Restoring the original RBR cars
 
  
- SPECIAL THANKS TO:
+## SPECIAL THANKS TO:
  - Workerbee (for his invaluable support and testing, and all the great past work!!!)
  - kegetys (for the dattool)
