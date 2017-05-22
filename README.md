@@ -10,7 +10,7 @@ can be downloaded with just a click.
 
 VIDEO: http://www.youtube.com/watch?v=Kd8T38kvY_A
 
-[](https://rawgit.com/zissakos/RBRCIT/master/rbrcit.png)
+![Screenshot](https://rawgit.com/zissakos/RBRCIT/master/rbrcit.png)
 
 
 ## Usage:
