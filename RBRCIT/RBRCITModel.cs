@@ -124,6 +124,7 @@ namespace RBRCIT
 
         public void LoadAll()
         {
+            UseAudio = Directory.Exists("Audio") && !File.Exists("audio.dat");
             LoadAllCars();
             LoadCurrentCars();
             LoadSavedLists();
