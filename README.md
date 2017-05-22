@@ -8,6 +8,8 @@ This file serves as the internal "database" of vehicles.
 The vehicle model and NGP Physics of each vehicle in this list 
 can be downloaded with just a click.
 
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/Kd8T38kvY_A/0.jpg)](http://www.youtube.com/watch?v=Kd8T38kvY_A)
+
 ![Example Screenshot](https://rawgit.com/zissakos/RBRCIT/master/rbrcit.png)
 
 
