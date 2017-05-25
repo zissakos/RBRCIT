@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            BrightIdeasSoftware.CellStyle cellStyle1 = new BrightIdeasSoftware.CellStyle();
-            BrightIdeasSoftware.CellStyle cellStyle2 = new BrightIdeasSoftware.CellStyle();
-            BrightIdeasSoftware.CellStyle cellStyle3 = new BrightIdeasSoftware.CellStyle();
+            BrightIdeasSoftware.CellStyle cellStyle7 = new BrightIdeasSoftware.CellStyle();
+            BrightIdeasSoftware.CellStyle cellStyle8 = new BrightIdeasSoftware.CellStyle();
+            BrightIdeasSoftware.CellStyle cellStyle9 = new BrightIdeasSoftware.CellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.collapseAllGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncollapseAllGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +77,7 @@
             this.colAction = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.myButtonRendererAdd = new RBRCIT.MyButtonRenderer();
             this.imageList16 = new System.Windows.Forms.ImageList(this.components);
+            this.cbReplaceShoolFiles = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -115,7 +116,6 @@
             this.contextLoadListManage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuManageSavedCarLists = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbReplaceShoolFiles = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -312,17 +312,17 @@
             // 
             // hyperlinkStyle1
             // 
-            cellStyle1.Font = null;
-            cellStyle1.FontStyle = System.Drawing.FontStyle.Underline;
-            cellStyle1.ForeColor = System.Drawing.Color.Blue;
-            this.hyperlinkStyle1.Normal = cellStyle1;
-            cellStyle2.Font = null;
-            cellStyle2.FontStyle = System.Drawing.FontStyle.Underline;
-            this.hyperlinkStyle1.Over = cellStyle2;
+            cellStyle7.Font = null;
+            cellStyle7.FontStyle = System.Drawing.FontStyle.Underline;
+            cellStyle7.ForeColor = System.Drawing.Color.Blue;
+            this.hyperlinkStyle1.Normal = cellStyle7;
+            cellStyle8.Font = null;
+            cellStyle8.FontStyle = System.Drawing.FontStyle.Underline;
+            this.hyperlinkStyle1.Over = cellStyle8;
             this.hyperlinkStyle1.OverCursor = System.Windows.Forms.Cursors.Hand;
-            cellStyle3.Font = null;
-            cellStyle3.ForeColor = System.Drawing.Color.Blue;
-            this.hyperlinkStyle1.Visited = cellStyle3;
+            cellStyle9.Font = null;
+            cellStyle9.ForeColor = System.Drawing.Color.Blue;
+            this.hyperlinkStyle1.Visited = cellStyle9;
             // 
             // statusStrip1
             // 
@@ -417,9 +417,9 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.olvInstalledCars);
             this.mySplitContainer1.Panel2.Controls.Add(this.button1);
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
-            this.mySplitContainer1.Panel2MinSize = 400;
+            this.mySplitContainer1.Panel2MinSize = 420;
             this.mySplitContainer1.Size = new System.Drawing.Size(1194, 565);
-            this.mySplitContainer1.SplitterDistance = 698;
+            this.mySplitContainer1.SplitterDistance = 694;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -474,7 +474,7 @@
             this.olvAllCars.RowHeight = 21;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(680, 527);
+            this.olvAllCars.Size = new System.Drawing.Size(676, 527);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -580,6 +580,17 @@
             this.imageList16.Images.SetKeyName(0, "left-arrow.png");
             this.imageList16.Images.SetKeyName(1, "right-arrow.png");
             // 
+            // cbReplaceShoolFiles
+            // 
+            this.cbReplaceShoolFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbReplaceShoolFiles.AutoSize = true;
+            this.cbReplaceShoolFiles.Location = new System.Drawing.Point(302, 313);
+            this.cbReplaceShoolFiles.Name = "cbReplaceShoolFiles";
+            this.cbReplaceShoolFiles.Size = new System.Drawing.Size(178, 17);
+            this.cbReplaceShoolFiles.TabIndex = 13;
+            this.cbReplaceShoolFiles.Text = "Replace School Car files (Slot 5)";
+            this.cbReplaceShoolFiles.UseVisualStyleBackColor = true;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -683,7 +694,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(18, 377);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(454, 94);
+            this.groupBox1.Size = new System.Drawing.Size(462, 94);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Plugins";
@@ -691,7 +702,7 @@
             // btFixupConfigure
             // 
             this.btFixupConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixupConfigure.Location = new System.Drawing.Point(363, 59);
+            this.btFixupConfigure.Location = new System.Drawing.Point(371, 59);
             this.btFixupConfigure.Name = "btFixupConfigure";
             this.btFixupConfigure.Size = new System.Drawing.Size(80, 23);
             this.btFixupConfigure.TabIndex = 3;
@@ -702,7 +713,7 @@
             // btFixup
             // 
             this.btFixup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixup.Location = new System.Drawing.Point(266, 59);
+            this.btFixup.Location = new System.Drawing.Point(274, 59);
             this.btFixup.Name = "btFixup";
             this.btFixup.Size = new System.Drawing.Size(91, 23);
             this.btFixup.TabIndex = 3;
@@ -713,7 +724,7 @@
             // btNGPConfigure
             // 
             this.btNGPConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNGPConfigure.Location = new System.Drawing.Point(363, 28);
+            this.btNGPConfigure.Location = new System.Drawing.Point(371, 28);
             this.btNGPConfigure.Name = "btNGPConfigure";
             this.btNGPConfigure.Size = new System.Drawing.Size(80, 23);
             this.btNGPConfigure.TabIndex = 2;
@@ -724,7 +735,7 @@
             // btNGP
             // 
             this.btNGP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNGP.Location = new System.Drawing.Point(266, 28);
+            this.btNGP.Location = new System.Drawing.Point(274, 28);
             this.btNGP.Name = "btNGP";
             this.btNGP.Size = new System.Drawing.Size(91, 23);
             this.btNGP.TabIndex = 2;
@@ -839,7 +850,7 @@
             this.olvInstalledCars.RowHeight = 30;
             this.olvInstalledCars.ShowGroups = false;
             this.olvInstalledCars.ShowImagesOnSubItems = true;
-            this.olvInstalledCars.Size = new System.Drawing.Size(454, 282);
+            this.olvInstalledCars.Size = new System.Drawing.Size(462, 282);
             this.olvInstalledCars.TabIndex = 1;
             this.olvInstalledCars.UnfocusedSelectedBackColor = System.Drawing.SystemColors.Highlight;
             this.olvInstalledCars.UnfocusedSelectedForeColor = System.Drawing.SystemColors.HighlightText;
@@ -926,7 +937,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(381, 515);
+            this.button1.Location = new System.Drawing.Point(389, 515);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 37);
             this.button1.TabIndex = 3;
@@ -937,7 +948,7 @@
             // btApply
             // 
             this.btApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btApply.Location = new System.Drawing.Point(284, 515);
+            this.btApply.Location = new System.Drawing.Point(292, 515);
             this.btApply.Name = "btApply";
             this.btApply.Size = new System.Drawing.Size(91, 37);
             this.btApply.TabIndex = 3;
@@ -964,16 +975,6 @@
             this.MenuManageSavedCarLists.Size = new System.Drawing.Size(198, 22);
             this.MenuManageSavedCarLists.Text = "Manage Saved Car Lists";
             this.MenuManageSavedCarLists.Click += new System.EventHandler(this.MenuManageSavedCarLists_Click);
-            // 
-            // cbReplaceShoolFiles
-            // 
-            this.cbReplaceShoolFiles.AutoSize = true;
-            this.cbReplaceShoolFiles.Location = new System.Drawing.Point(294, 313);
-            this.cbReplaceShoolFiles.Name = "cbReplaceShoolFiles";
-            this.cbReplaceShoolFiles.Size = new System.Drawing.Size(178, 17);
-            this.cbReplaceShoolFiles.TabIndex = 13;
-            this.cbReplaceShoolFiles.Text = "Replace School Car files (Slot 5)";
-            this.cbReplaceShoolFiles.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
