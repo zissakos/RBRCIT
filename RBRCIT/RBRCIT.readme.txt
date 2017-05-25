@@ -53,6 +53,10 @@ Check the "Tools" and "Downloads" menus for
 
 Version History
 ---------------------------------------------------------------------
+1.0.2 2017-05-26
+	* fixed: school car changes broke compatibility with czech (RBRTM) plugin, now it is a checkbox
+	* added: have child windows appear in the center
+
 1.0.1 2017-05-20
 	* fixed: crash when clicking on a download link of a car with undefined model link
 
