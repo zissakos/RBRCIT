@@ -20,7 +20,24 @@ namespace RBRCIT
         public Form1()
         {
             InitializeComponent();
+            SetSchoolToolTip();
             rbrcit = new RBRCITModel(this);
+        }
+
+        void SetSchoolToolTip()
+        {
+            ToolTip tt = new ToolTip();
+            tt.AutomaticDelay = 0;
+            tt.AutoPopDelay = 30000;
+            tt.InitialDelay = 0;
+            tt.ReshowDelay = 0;
+            tt.ToolTipIcon = ToolTipIcon.Warning;
+            //tt.ToolTipTitle = "HELP";
+            string tooltiptext = "Copies the setups of the vehicle in Slot 5 to the 'school' subfolder of physics.rbz." + Environment.NewLine;
+            tooltiptext += "Enables to use Car #5 in the rally school." + Environment.NewLine;
+            tooltiptext += "" + Environment.NewLine;
+            tooltiptext += "However, this breaks compatibility with the Czech (RBRTM) plugin!" + Environment.NewLine;
+            tt.SetToolTip(cbReplaceShoolFiles, tooltiptext);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -131,6 +148,11 @@ namespace RBRCIT
                 btFixup.Text = "Download";
                 btFixupConfigure.Enabled = false;
             }
+            
+            //enable plugin buttons
+            btNGP.Enabled = true;
+            btFixup.Enabled = true;
+
         }
 
         public void UpdateSavedLists()
@@ -424,7 +446,7 @@ namespace RBRCIT
         private void btApply_Click(object sender, EventArgs e)
         {
             btApply.Enabled = false;
-            rbrcit.ApplyChanges(false);
+            rbrcit.ApplyChanges(cbReplaceShoolFiles.Checked, false);
             UpdateApplyButton();
             MessageBox.Show("Cars have been installed.");
         }
@@ -488,6 +510,7 @@ namespace RBRCIT
         }
         private void btNGPDownload_Click(object sender, EventArgs e)
         {
+            btNGP.Enabled = false;
             rbrcit.DownloadPluginNGP();
         }
 
@@ -498,6 +521,7 @@ namespace RBRCIT
 
         private void btFixupDownload_Click(object sender, EventArgs e)
         {
+            btFixup.Enabled = false;
             rbrcit.DownloadPluginFixUp();
         }
 

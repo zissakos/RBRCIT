@@ -115,6 +115,7 @@
             this.contextLoadListManage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuManageSavedCarLists = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbReplaceShoolFiles = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -223,7 +224,7 @@
             this.MenuBackup,
             this.MenuRestore});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             this.toolsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.toolsToolStripMenuItem_DropDownOpening);
             // 
@@ -400,6 +401,7 @@
             // 
             // mySplitContainer1.Panel2
             // 
+            this.mySplitContainer1.Panel2.Controls.Add(this.cbReplaceShoolFiles);
             this.mySplitContainer1.Panel2.Controls.Add(this.label12);
             this.mySplitContainer1.Panel2.Controls.Add(this.label11);
             this.mySplitContainer1.Panel2.Controls.Add(this.label10);
@@ -417,7 +419,7 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
             this.mySplitContainer1.Panel2MinSize = 400;
             this.mySplitContainer1.Size = new System.Drawing.Size(1194, 565);
-            this.mySplitContainer1.SplitterDistance = 702;
+            this.mySplitContainer1.SplitterDistance = 698;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -472,7 +474,7 @@
             this.olvAllCars.RowHeight = 21;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(684, 527);
+            this.olvAllCars.Size = new System.Drawing.Size(680, 527);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -963,6 +965,16 @@
             this.MenuManageSavedCarLists.Text = "Manage Saved Car Lists";
             this.MenuManageSavedCarLists.Click += new System.EventHandler(this.MenuManageSavedCarLists_Click);
             // 
+            // cbReplaceShoolFiles
+            // 
+            this.cbReplaceShoolFiles.AutoSize = true;
+            this.cbReplaceShoolFiles.Location = new System.Drawing.Point(294, 313);
+            this.cbReplaceShoolFiles.Name = "cbReplaceShoolFiles";
+            this.cbReplaceShoolFiles.Size = new System.Drawing.Size(178, 17);
+            this.cbReplaceShoolFiles.TabIndex = 13;
+            this.cbReplaceShoolFiles.Text = "Replace School Car files (Slot 5)";
+            this.cbReplaceShoolFiles.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1085,6 +1097,7 @@
         private System.Windows.Forms.ContextMenuStrip contextLoadListManage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem MenuManageSavedCarLists;
+        private System.Windows.Forms.CheckBox cbReplaceShoolFiles;
     }
 }
 

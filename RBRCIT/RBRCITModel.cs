@@ -289,10 +289,10 @@ namespace RBRCIT
             return false;
         }
 
-        public void ApplyChanges(bool force)
+        public void ApplyChanges(bool replaceSchoolFiles, bool force)
         {
             WriteCarsINI();
-            CopyNGPPhysics(force);
+            CopyNGPPhysics(replaceSchoolFiles, force);
             WriteAudioCarsINI();
             ApplyUserSettings();
             WriteCarListUserINI();
@@ -347,7 +347,7 @@ namespace RBRCIT
         }
 
         //force=true: do it even if there is no desired change, required for updating physics.rbz after an NGP plugin download/update
-        private void CopyNGPPhysics(bool force)
+        private void CopyNGPPhysics(bool replaceSchoolFiles, bool force)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -368,23 +368,29 @@ namespace RBRCIT
                     }
                     HelperFunctions.DirectoryCopy("RBRCIT\\physics\\" + c.physics, "Physics\\" + PhysicsFolders[i]);
 
-                    //special handling for school car
-                    if (i == 5)
-                    {
-                        File.Copy("RBRCIT\\physics\\" + c.physics + "\\setups\\d_gravel.lsp", "Physics\\school\\gravel.lsp", true);
-                        File.Copy("RBRCIT\\physics\\" + c.physics + "\\setups\\d_gravel.lsp", "Physics\\school\\sfgravel.lsp", true);
-                        File.Copy("RBRCIT\\physics\\" + c.physics + "\\setups\\d_tarmac.lsp", "Physics\\school\\tarmac.lsp", true);
 
-                        string[] lines = File.ReadAllLines("Physics\\school\\sfgravel.lsp");
-                        int j = 0;
-                        foreach (string line in lines)
-                        {
-                            if (line.Contains("FrontRollBarStiffness")) lines[j] = "   FrontRollBarStiffness\t\t\t0";
-                            if (line.Contains("RearRollBarStiffness")) lines[j] = "   RearRollBarStiffness\t\t\t\t0";
-                            j++;
-                        }
-                        File.WriteAllLines("Physics\\school\\sfgravel.lsp", lines);
+                }
+
+                //special handling for school car
+                if (replaceSchoolFiles)
+                {
+                    File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_gravel.lsp", "Physics\\school\\gravel.lsp", true);
+                    File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_gravel.lsp", "Physics\\school\\sfgravel.lsp", true);
+                    File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_tarmac.lsp", "Physics\\school\\tarmac.lsp", true);
+
+                    string[] lines = File.ReadAllLines("Physics\\school\\sfgravel.lsp");
+                    int j = 0;
+                    foreach (string line in lines)
+                    {
+                        if (line.Contains("FrontRollBarStiffness")) lines[j] = "   FrontRollBarStiffness\t\t\t0";
+                        if (line.Contains("RearRollBarStiffness")) lines[j] = "   RearRollBarStiffness\t\t\t\t0";
+                        j++;
                     }
+                    File.WriteAllLines("Physics\\school\\sfgravel.lsp", lines);
+                }
+                else
+                {
+                    HelperFunctions.DirectoryCopy("RBRCIT\\physics\\school", "Physics\\school");
                 }
             }
 
@@ -643,7 +649,7 @@ namespace RBRCIT
         private void FormDownloadClosedNGP(object sender, FormClosedEventArgs e)
         {
             ExtractPhysicsRBZ(true);
-            CopyNGPPhysics(true);
+            CopyNGPPhysics(false, true);
             FormDownloadClosedPlugin(null, null);
         }
 
@@ -694,7 +700,11 @@ namespace RBRCIT
 
             if (Directory.Exists("Physics"))
             {
-                if (overwriteSubFolder) Directory.Delete("Physics", true);
+                if (overwriteSubFolder)
+                {
+                    Directory.Delete("Physics", true);
+                    while (Directory.Exists("Physics")) System.Threading.Thread.Sleep(10);
+                }
                 else return;
             }
             if (File.Exists("physics.rbz")) ZipManager.ExtractToDirectory("physics.rbz", ".");
@@ -710,7 +720,7 @@ namespace RBRCIT
             DesiredCarList[5] = AllCars.Find(x => x.nr == "6");
             DesiredCarList[6] = AllCars.Find(x => x.nr == "7");
             DesiredCarList[7] = AllCars.Find(x => x.nr == "8");
-            ApplyChanges(true);
+            ApplyChanges(false, true);
         }
 
         public string GetCarListVersion()
