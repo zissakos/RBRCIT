@@ -1,0 +1,8 @@
+0;1;Citroen Xsara
+1;2;Hyundai Accent
+2;3;MG ZR Super 1600
+3;4;Mitsubishi Lancer Evo VII
+4;5;Peugeot 206
+5;6;Subaru Impreza 2003
+6;7;Toyota Corolla
+7;8;Subary Impreza 2000
