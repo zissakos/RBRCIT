@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            BrightIdeasSoftware.CellStyle cellStyle7 = new BrightIdeasSoftware.CellStyle();
-            BrightIdeasSoftware.CellStyle cellStyle8 = new BrightIdeasSoftware.CellStyle();
-            BrightIdeasSoftware.CellStyle cellStyle9 = new BrightIdeasSoftware.CellStyle();
+            BrightIdeasSoftware.CellStyle cellStyle1 = new BrightIdeasSoftware.CellStyle();
+            BrightIdeasSoftware.CellStyle cellStyle2 = new BrightIdeasSoftware.CellStyle();
+            BrightIdeasSoftware.CellStyle cellStyle3 = new BrightIdeasSoftware.CellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.collapseAllGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncollapseAllGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,6 +116,9 @@
             this.contextLoadListManage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuManageSavedCarLists = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.updateModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updatePhysicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -127,6 +130,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvInstalledCars)).BeginInit();
             this.contextLoadListManage.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -312,17 +316,17 @@
             // 
             // hyperlinkStyle1
             // 
-            cellStyle7.Font = null;
-            cellStyle7.FontStyle = System.Drawing.FontStyle.Underline;
-            cellStyle7.ForeColor = System.Drawing.Color.Blue;
-            this.hyperlinkStyle1.Normal = cellStyle7;
-            cellStyle8.Font = null;
-            cellStyle8.FontStyle = System.Drawing.FontStyle.Underline;
-            this.hyperlinkStyle1.Over = cellStyle8;
+            cellStyle1.Font = null;
+            cellStyle1.FontStyle = System.Drawing.FontStyle.Underline;
+            cellStyle1.ForeColor = System.Drawing.Color.Blue;
+            this.hyperlinkStyle1.Normal = cellStyle1;
+            cellStyle2.Font = null;
+            cellStyle2.FontStyle = System.Drawing.FontStyle.Underline;
+            this.hyperlinkStyle1.Over = cellStyle2;
             this.hyperlinkStyle1.OverCursor = System.Windows.Forms.Cursors.Hand;
-            cellStyle9.Font = null;
-            cellStyle9.ForeColor = System.Drawing.Color.Blue;
-            this.hyperlinkStyle1.Visited = cellStyle9;
+            cellStyle3.Font = null;
+            cellStyle3.ForeColor = System.Drawing.Color.Blue;
+            this.hyperlinkStyle1.Visited = cellStyle3;
             // 
             // statusStrip1
             // 
@@ -419,7 +423,7 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
             this.mySplitContainer1.Panel2MinSize = 420;
             this.mySplitContainer1.Size = new System.Drawing.Size(1194, 565);
-            this.mySplitContainer1.SplitterDistance = 694;
+            this.mySplitContainer1.SplitterDistance = 670;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -459,7 +463,6 @@
             this.colModel,
             this.colPhysics,
             this.colAction});
-            this.olvAllCars.ContextMenuStrip = this.contextMenuStrip1;
             this.olvAllCars.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvAllCars.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvAllCars.FullRowSelect = true;
@@ -472,9 +475,10 @@
             this.olvAllCars.MultiSelect = false;
             this.olvAllCars.Name = "olvAllCars";
             this.olvAllCars.RowHeight = 21;
+            this.olvAllCars.ShowCommandMenuOnRightClick = true;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(676, 527);
+            this.olvAllCars.Size = new System.Drawing.Size(652, 527);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -484,6 +488,7 @@
             this.olvAllCars.View = System.Windows.Forms.View.Details;
             this.olvAllCars.BeforeCreatingGroups += new System.EventHandler<BrightIdeasSoftware.CreateGroupsEventArgs>(this.olvAllCars_BeforeCreatingGroups);
             this.olvAllCars.ButtonClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.olvAllCars_ButtonClick);
+            this.olvAllCars.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.olvAllCars_CellRightClick);
             this.olvAllCars.CellToolTipShowing += new System.EventHandler<BrightIdeasSoftware.ToolTipShowingEventArgs>(this.olvAllCars_CellToolTipShowing);
             this.olvAllCars.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.olvAllCars_FormatCell);
             this.olvAllCars.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.olvAllCars_FormatRow);
@@ -976,6 +981,28 @@
             this.MenuManageSavedCarLists.Text = "Manage Saved Car Lists";
             this.MenuManageSavedCarLists.Click += new System.EventHandler(this.MenuManageSavedCarLists_Click);
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateModelToolStripMenuItem,
+            this.updatePhysicsToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(155, 70);
+            // 
+            // updateModelToolStripMenuItem
+            // 
+            this.updateModelToolStripMenuItem.Name = "updateModelToolStripMenuItem";
+            this.updateModelToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.updateModelToolStripMenuItem.Text = "Update Model";
+            this.updateModelToolStripMenuItem.Click += new System.EventHandler(this.updateModelToolStripMenuItem_Click);
+            // 
+            // updatePhysicsToolStripMenuItem
+            // 
+            this.updatePhysicsToolStripMenuItem.Name = "updatePhysicsToolStripMenuItem";
+            this.updatePhysicsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.updatePhysicsToolStripMenuItem.Text = "Update Physics";
+            this.updatePhysicsToolStripMenuItem.Click += new System.EventHandler(this.updatePhysicsToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1009,6 +1036,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvInstalledCars)).EndInit();
             this.contextLoadListManage.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1099,6 +1127,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem MenuManageSavedCarLists;
         private System.Windows.Forms.CheckBox cbReplaceShoolFiles;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem updateModelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updatePhysicsToolStripMenuItem;
     }
 }
 

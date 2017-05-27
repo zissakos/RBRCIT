@@ -300,6 +300,19 @@ namespace RBRCIT
             e.Text += "\nPhysics Folder: " + c.physics;
         }
 
+        private void olvAllCars_CellRightClick(object sender, CellRightClickEventArgs e)
+        {
+            if (e.Model == null)
+            {
+                e.MenuStrip = contextMenuStrip1;
+            }
+            else
+            {
+                contextMenuStrip2.Tag = (Car)e.Model;
+                e.MenuStrip = contextMenuStrip2;
+            }
+        }
+
         private void olvInstalledCars_FormatRow(object sender, FormatRowEventArgs e)
         {
             if (!rbrcit.DesiredCarList[e.RowIndex].Equals(rbrcit.CurrentCarList[e.RowIndex]))
@@ -404,7 +417,6 @@ namespace RBRCIT
                 }
             }
         }
-
         private void btSaveList_Click(object sender, EventArgs e)
         {
             FormSaveList fsl = new FormSaveList();
@@ -570,6 +582,17 @@ namespace RBRCIT
         private void MenuManageSavedCarLists_Click(object sender, EventArgs e)
         {
             Process.Start("RBRCIT\\savedlists");
+        }
+        private void updateModelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Car c = (Car)contextMenuStrip2.Tag;
+            rbrcit.DownloadCarModel(c);
+        }
+
+        private void updatePhysicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Car c = (Car)contextMenuStrip2.Tag;
+            rbrcit.DownloadCarPhysics(c);
         }
 
         private void MenuBackup_Click(object sender, EventArgs e)
