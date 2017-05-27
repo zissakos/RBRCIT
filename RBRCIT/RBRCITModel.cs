@@ -358,17 +358,16 @@ namespace RBRCIT
                 if (c.physics == null) continue;
 
                 //copy NGP physics if it exists
-                if (Directory.Exists("RBRCIT\\physics\\" + c.physics))
+                string sourceFolder = "RBRCIT\\physics\\" + c.physics;
+                string destFolder = "Physics\\" + PhysicsFolders[i];
+
+                if (Directory.Exists(sourceFolder))
                 {
-                    string physicsFolder = "Physics\\" + PhysicsFolders[i];
-
-                    if (Directory.Exists(physicsFolder))
+                    if (Directory.Exists(destFolder))
                     {
-                        HelperFunctions.DirectoryEmpty(physicsFolder);
+                        HelperFunctions.DirectoryDeleteAllFilesRecursively(destFolder);
                     }
-                    HelperFunctions.DirectoryCopy("RBRCIT\\physics\\" + c.physics, "Physics\\" + PhysicsFolders[i]);
-
-
+                    HelperFunctions.DirectoryCopy(sourceFolder, destFolder);
                 }
 
                 //special handling for school car

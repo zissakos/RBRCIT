@@ -71,6 +71,24 @@ namespace RBRCIT
         }
 
 
+        /// <summary>
+        /// Deletes all files in the dir and all its subdirs, leaving the complete dir structure intact.
+        /// Should be less prone to filesystem access errors/exceptions.
+        /// </summary>
+        /// <param name="path"></param>
+        public static void DirectoryDeleteAllFilesRecursively(string path)
+        {
+            DirectoryInfo di = new DirectoryInfo(path);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                DirectoryDeleteAllFilesRecursively(dir.FullName);
+            }
+        }
+
         public static void ShowAtCenterParent(this Form form, Form parent)
         {
             form.StartPosition = FormStartPosition.Manual;
