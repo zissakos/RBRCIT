@@ -423,7 +423,7 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
             this.mySplitContainer1.Panel2MinSize = 420;
             this.mySplitContainer1.Size = new System.Drawing.Size(1194, 565);
-            this.mySplitContainer1.SplitterDistance = 670;
+            this.mySplitContainer1.SplitterDistance = 666;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -478,7 +478,7 @@
             this.olvAllCars.ShowCommandMenuOnRightClick = true;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(652, 527);
+            this.olvAllCars.Size = new System.Drawing.Size(648, 527);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -589,7 +589,7 @@
             // 
             this.cbReplaceShoolFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbReplaceShoolFiles.AutoSize = true;
-            this.cbReplaceShoolFiles.Location = new System.Drawing.Point(302, 313);
+            this.cbReplaceShoolFiles.Location = new System.Drawing.Point(330, 313);
             this.cbReplaceShoolFiles.Name = "cbReplaceShoolFiles";
             this.cbReplaceShoolFiles.Size = new System.Drawing.Size(178, 17);
             this.cbReplaceShoolFiles.TabIndex = 13;
@@ -699,7 +699,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(18, 377);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(462, 94);
+            this.groupBox1.Size = new System.Drawing.Size(490, 94);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Plugins";
@@ -707,7 +707,7 @@
             // btFixupConfigure
             // 
             this.btFixupConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixupConfigure.Location = new System.Drawing.Point(371, 59);
+            this.btFixupConfigure.Location = new System.Drawing.Point(399, 59);
             this.btFixupConfigure.Name = "btFixupConfigure";
             this.btFixupConfigure.Size = new System.Drawing.Size(80, 23);
             this.btFixupConfigure.TabIndex = 3;
@@ -718,7 +718,7 @@
             // btFixup
             // 
             this.btFixup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixup.Location = new System.Drawing.Point(274, 59);
+            this.btFixup.Location = new System.Drawing.Point(302, 59);
             this.btFixup.Name = "btFixup";
             this.btFixup.Size = new System.Drawing.Size(91, 23);
             this.btFixup.TabIndex = 3;
@@ -729,7 +729,7 @@
             // btNGPConfigure
             // 
             this.btNGPConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNGPConfigure.Location = new System.Drawing.Point(371, 28);
+            this.btNGPConfigure.Location = new System.Drawing.Point(399, 28);
             this.btNGPConfigure.Name = "btNGPConfigure";
             this.btNGPConfigure.Size = new System.Drawing.Size(80, 23);
             this.btNGPConfigure.TabIndex = 2;
@@ -740,7 +740,7 @@
             // btNGP
             // 
             this.btNGP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNGP.Location = new System.Drawing.Point(274, 28);
+            this.btNGP.Location = new System.Drawing.Point(302, 28);
             this.btNGP.Name = "btNGP";
             this.btNGP.Size = new System.Drawing.Size(91, 23);
             this.btNGP.TabIndex = 2;
@@ -855,7 +855,7 @@
             this.olvInstalledCars.RowHeight = 30;
             this.olvInstalledCars.ShowGroups = false;
             this.olvInstalledCars.ShowImagesOnSubItems = true;
-            this.olvInstalledCars.Size = new System.Drawing.Size(462, 282);
+            this.olvInstalledCars.Size = new System.Drawing.Size(490, 282);
             this.olvInstalledCars.TabIndex = 1;
             this.olvInstalledCars.UnfocusedSelectedBackColor = System.Drawing.SystemColors.Highlight;
             this.olvInstalledCars.UnfocusedSelectedForeColor = System.Drawing.SystemColors.HighlightText;
@@ -942,7 +942,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(389, 515);
+            this.button1.Location = new System.Drawing.Point(417, 515);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 37);
             this.button1.TabIndex = 3;
@@ -953,7 +953,7 @@
             // btApply
             // 
             this.btApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btApply.Location = new System.Drawing.Point(292, 515);
+            this.btApply.Location = new System.Drawing.Point(320, 515);
             this.btApply.Name = "btApply";
             this.btApply.Size = new System.Drawing.Size(91, 37);
             this.btApply.TabIndex = 3;
@@ -987,7 +987,7 @@
             this.updateModelToolStripMenuItem,
             this.updatePhysicsToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(155, 70);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(155, 48);
             // 
             // updateModelToolStripMenuItem
             // 
