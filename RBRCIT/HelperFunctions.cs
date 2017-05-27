@@ -89,6 +89,20 @@ namespace RBRCIT
             }
         }
 
+        /// <summary>
+        /// removes the read only flag from all files in the given folder
+        /// </summary>
+        /// <param name="path"></param>
+        public static void RemoveReadOnlyFlagInFolder(string path)
+        {
+            if (!Directory.Exists(path)) return;
+            DirectoryInfo di = new DirectoryInfo(path);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.IsReadOnly = false;
+            }
+        }
+
         public static void ShowAtCenterParent(this Form form, Form parent)
         {
             form.StartPosition = FormStartPosition.Manual;

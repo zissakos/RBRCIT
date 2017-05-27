@@ -369,28 +369,29 @@ namespace RBRCIT
                     }
                     HelperFunctions.DirectoryCopy(sourceFolder, destFolder);
                 }
+            }
 
-                //special handling for school car
-                if (replaceSchoolFiles)
-                {
-                    File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_gravel.lsp", "Physics\\school\\gravel.lsp", true);
-                    File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_gravel.lsp", "Physics\\school\\sfgravel.lsp", true);
-                    File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_tarmac.lsp", "Physics\\school\\tarmac.lsp", true);
 
-                    string[] lines = File.ReadAllLines("Physics\\school\\sfgravel.lsp");
-                    int j = 0;
-                    foreach (string line in lines)
-                    {
-                        if (line.Contains("FrontRollBarStiffness")) lines[j] = "   FrontRollBarStiffness\t\t\t0";
-                        if (line.Contains("RearRollBarStiffness")) lines[j] = "   RearRollBarStiffness\t\t\t\t0";
-                        j++;
-                    }
-                    File.WriteAllLines("Physics\\school\\sfgravel.lsp", lines);
-                }
-                else
+            //special handling for school car
+            if (replaceSchoolFiles)
+            {
+                File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_gravel.lsp", "Physics\\school\\gravel.lsp", true);
+                File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_gravel.lsp", "Physics\\school\\sfgravel.lsp", true);
+                File.Copy("RBRCIT\\physics\\" + DesiredCarList[5].physics + "\\setups\\d_tarmac.lsp", "Physics\\school\\tarmac.lsp", true);
+
+                string[] lines = File.ReadAllLines("Physics\\school\\sfgravel.lsp");
+                int j = 0;
+                foreach (string line in lines)
                 {
-                    HelperFunctions.DirectoryCopy("RBRCIT\\physics\\school", "Physics\\school");
+                    if (line.Contains("FrontRollBarStiffness")) lines[j] = "   FrontRollBarStiffness\t\t\t0";
+                    if (line.Contains("RearRollBarStiffness")) lines[j] = "   RearRollBarStiffness\t\t\t\t0";
+                    j++;
                 }
+                File.WriteAllLines("Physics\\school\\sfgravel.lsp", lines);
+            }
+            else
+            {
+                HelperFunctions.DirectoryCopy("RBRCIT\\physics\\school", "Physics\\school");
             }
 
             //create physics.rbz from subfolder
@@ -647,7 +648,9 @@ namespace RBRCIT
 
         private void FormDownloadClosedNGP(object sender, FormClosedEventArgs e)
         {
+            HelperFunctions.RemoveReadOnlyFlagInFolder("Physics\\school");
             ExtractPhysicsRBZ(true);
+            HelperFunctions.RemoveReadOnlyFlagInFolder("Physics\\school");
             CopyNGPPhysics(false, true);
             FormDownloadClosedPlugin(null, null);
         }
@@ -701,8 +704,9 @@ namespace RBRCIT
             {
                 if (overwriteSubFolder)
                 {
-                    Directory.Delete("Physics", true);
-                    while (Directory.Exists("Physics")) System.Threading.Thread.Sleep(10);
+                    //Directory.Delete("Physics", true);
+                    //while (Directory.Exists("Physics")) System.Threading.Thread.Sleep(10);
+                    HelperFunctions.DirectoryDeleteAllFilesRecursively("Physics");
                 }
                 else return;
             }
