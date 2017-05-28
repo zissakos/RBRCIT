@@ -119,6 +119,7 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.updateModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updatePhysicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuUpdateAllExistingPhysics = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -274,7 +275,8 @@
             // 
             this.downloadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuUpdateCarList,
-            this.MenuDownloadMissingPhysics});
+            this.MenuDownloadMissingPhysics,
+            this.MenuUpdateAllExistingPhysics});
             this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
             this.downloadToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.downloadToolStripMenuItem.Text = "Download";
@@ -423,7 +425,7 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
             this.mySplitContainer1.Panel2MinSize = 420;
             this.mySplitContainer1.Size = new System.Drawing.Size(1194, 565);
-            this.mySplitContainer1.SplitterDistance = 666;
+            this.mySplitContainer1.SplitterDistance = 662;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -478,7 +480,7 @@
             this.olvAllCars.ShowCommandMenuOnRightClick = true;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(648, 527);
+            this.olvAllCars.Size = new System.Drawing.Size(644, 527);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -1003,6 +1005,13 @@
             this.updatePhysicsToolStripMenuItem.Text = "Update Physics";
             this.updatePhysicsToolStripMenuItem.Click += new System.EventHandler(this.updatePhysicsToolStripMenuItem_Click);
             // 
+            // MenuUpdateAllExistingPhysics
+            // 
+            this.MenuUpdateAllExistingPhysics.Name = "MenuUpdateAllExistingPhysics";
+            this.MenuUpdateAllExistingPhysics.Size = new System.Drawing.Size(214, 22);
+            this.MenuUpdateAllExistingPhysics.Text = "Update All Existing Physics";
+            this.MenuUpdateAllExistingPhysics.Click += new System.EventHandler(this.MenuUpdateAllExistingPhysics_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1130,6 +1139,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem updateModelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updatePhysicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuUpdateAllExistingPhysics;
     }
 }
 

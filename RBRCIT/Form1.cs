@@ -568,6 +568,11 @@ namespace RBRCIT
             rbrcit.DownloadMissingPhysics();
         }
 
+        private void MenuUpdateAllExistingPhysics_Click(object sender, EventArgs e)
+        {
+            rbrcit.UpdateAllExistingPhysics();
+        }
+
         private void MenuExtractAudioDat_Click(object sender, EventArgs e)
         {
             rbrcit.ExtractAudioDAT();
@@ -595,7 +600,6 @@ namespace RBRCIT
             Car c = (Car)contextMenuStrip2.Tag;
             rbrcit.DownloadCarPhysics(c);
         }
-
         private void MenuBackup_Click(object sender, EventArgs e)
         {
             rbrcit.Backup();

@@ -591,6 +591,30 @@ namespace RBRCIT
             fd.ShowAtCenterParent(mainForm);
         }
 
+        public void UpdateAllExistingPhysics()
+        {
+            List<DownloadJob> jobs = new List<DownloadJob>();
+            foreach (Car c in AllCars)
+            {
+                if (c.physics_exists)
+                {
+                    DownloadJob job;
+                    job.title = c.manufacturer + " " + c.name;
+                    job.URL = c.link_physics;
+                    job.path = "RBRCIT\\physics\\";
+                    jobs.Add(job);
+                }
+            }
+            if (jobs.Count == 0)
+            {
+                MessageBox.Show("No existing physics. Download Physics first.");
+                return;
+            }
+            FormDownload fd = new FormDownload(jobs);
+            fd.FormClosed += FormDownloadClosedAllCars;
+            fd.ShowAtCenterParent(mainForm);
+        }
+
         public bool PluginExistsNGP()
         {
             string pluginFileName = "Plugins\\PhysicsNG.dll";
