@@ -304,12 +304,12 @@ namespace RBRCIT
         {
             if (e.Model == null)
             {
-                e.MenuStrip = contextMenuStrip1;
+                e.MenuStrip = contextMenuStripGroups;
             }
             else
             {
-                contextMenuStrip2.Tag = (Car)e.Model;
-                e.MenuStrip = contextMenuStrip2;
+                contextMenuStripCar.Tag = (Car)e.Model;
+                e.MenuStrip = contextMenuStripCar;
             }
         }
 
@@ -591,13 +591,13 @@ namespace RBRCIT
 
         private void updateModelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Car c = (Car)contextMenuStrip2.Tag;
+            Car c = (Car)contextMenuStripCar.Tag;
             rbrcit.DownloadCarModel(c);
         }
 
         private void updatePhysicsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Car c = (Car)contextMenuStrip2.Tag;
+            Car c = (Car)contextMenuStripCar.Tag;
             rbrcit.DownloadCarPhysics(c);
         }
         private void MenuBackup_Click(object sender, EventArgs e)
