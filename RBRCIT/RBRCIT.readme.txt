@@ -53,7 +53,15 @@ Check the "Tools" and "Downloads" menus for
 
 Version History
 ---------------------------------------------------------------------
+1.0.5 2019-03-03
+	* fixed some ini parsing errors (e.g. with file 126p.ini)
+	* refactoring of ini parsing code
+	* added: the window can now be minimized
+	* RBRCIT.ini now contains a section
+	* updated carList.ini that ships with RBRCIT to v5.37
+
 1.0.4 2017-06-03
+	* added: new menu entry "update all existing physics" in download menu.
 
 1.0.3 2017-05-28
 	* added: context menu to update model/physics for a car

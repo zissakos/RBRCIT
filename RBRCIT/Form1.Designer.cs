@@ -63,6 +63,14 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.imageList16 = new System.Windows.Forms.ImageList(this.components);
+            this.contextLoadList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextLoadListManage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuManageSavedCarLists = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripCar = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.updateModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updatePhysicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mySplitContainer1 = new ZissisControls.MySplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.olvAllCars = new BrightIdeasSoftware.ObjectListView();
@@ -77,7 +85,6 @@
             this.colPhysics = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colAction = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.myButtonRendererAdd = new RBRCIT.MyButtonRenderer();
-            this.imageList16 = new System.Windows.Forms.ImageList(this.components);
             this.cbReplaceShoolFiles = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -88,7 +95,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btLoadList = new RBRCIT.MenuButton();
-            this.contextLoadList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btFixupConfigure = new System.Windows.Forms.Button();
             this.btFixup = new System.Windows.Forms.Button();
@@ -114,15 +120,11 @@
             this.myButtonRendererSettings = new RBRCIT.MyButtonRenderer();
             this.button1 = new System.Windows.Forms.Button();
             this.btApply = new System.Windows.Forms.Button();
-            this.contextLoadListManage = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.MenuManageSavedCarLists = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStripCar = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.updateModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updatePhysicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripGroups.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.contextLoadListManage.SuspendLayout();
+            this.contextMenuStripCar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mySplitContainer1)).BeginInit();
             this.mySplitContainer1.Panel1.SuspendLayout();
             this.mySplitContainer1.Panel2.SuspendLayout();
@@ -130,8 +132,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.olvAllCars)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvInstalledCars)).BeginInit();
-            this.contextLoadListManage.SuspendLayout();
-            this.contextMenuStripCar.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripGroups
@@ -399,6 +399,60 @@
             this.toolStripStatusLabel4.Size = new System.Drawing.Size(128, 21);
             this.toolStripStatusLabel4.Text = "toolStripStatusLabel4";
             // 
+            // imageList16
+            // 
+            this.imageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList16.ImageStream")));
+            this.imageList16.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList16.Images.SetKeyName(0, "left-arrow.png");
+            this.imageList16.Images.SetKeyName(1, "right-arrow.png");
+            // 
+            // contextLoadList
+            // 
+            this.contextLoadList.Name = "contextLoadList";
+            this.contextLoadList.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextLoadListManage
+            // 
+            this.contextLoadListManage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator5,
+            this.MenuManageSavedCarLists});
+            this.contextLoadListManage.Name = "contextLoadListManage";
+            this.contextLoadListManage.Size = new System.Drawing.Size(199, 32);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(195, 6);
+            // 
+            // MenuManageSavedCarLists
+            // 
+            this.MenuManageSavedCarLists.Name = "MenuManageSavedCarLists";
+            this.MenuManageSavedCarLists.Size = new System.Drawing.Size(198, 22);
+            this.MenuManageSavedCarLists.Text = "Manage Saved Car Lists";
+            this.MenuManageSavedCarLists.Click += new System.EventHandler(this.MenuManageSavedCarLists_Click);
+            // 
+            // contextMenuStripCar
+            // 
+            this.contextMenuStripCar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateModelToolStripMenuItem,
+            this.updatePhysicsToolStripMenuItem});
+            this.contextMenuStripCar.Name = "contextMenuStrip2";
+            this.contextMenuStripCar.Size = new System.Drawing.Size(155, 48);
+            // 
+            // updateModelToolStripMenuItem
+            // 
+            this.updateModelToolStripMenuItem.Name = "updateModelToolStripMenuItem";
+            this.updateModelToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.updateModelToolStripMenuItem.Text = "Update Model";
+            this.updateModelToolStripMenuItem.Click += new System.EventHandler(this.updateModelToolStripMenuItem_Click);
+            // 
+            // updatePhysicsToolStripMenuItem
+            // 
+            this.updatePhysicsToolStripMenuItem.Name = "updatePhysicsToolStripMenuItem";
+            this.updatePhysicsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.updatePhysicsToolStripMenuItem.Text = "Update Physics";
+            this.updatePhysicsToolStripMenuItem.Click += new System.EventHandler(this.updatePhysicsToolStripMenuItem_Click);
+            // 
             // mySplitContainer1
             // 
             this.mySplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -430,9 +484,9 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.olvInstalledCars);
             this.mySplitContainer1.Panel2.Controls.Add(this.button1);
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
-            this.mySplitContainer1.Panel2MinSize = 420;
+            this.mySplitContainer1.Panel2MinSize = 460;
             this.mySplitContainer1.Size = new System.Drawing.Size(1194, 565);
-            this.mySplitContainer1.SplitterDistance = 654;
+            this.mySplitContainer1.SplitterDistance = 642;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -487,7 +541,7 @@
             this.olvAllCars.ShowCommandMenuOnRightClick = true;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(636, 527);
+            this.olvAllCars.Size = new System.Drawing.Size(624, 527);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -587,13 +641,6 @@
             this.myButtonRendererAdd.ImageList = this.imageList16;
             this.myButtonRendererAdd.SizingMode = BrightIdeasSoftware.OLVColumn.ButtonSizingMode.CellBounds;
             // 
-            // imageList16
-            // 
-            this.imageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList16.ImageStream")));
-            this.imageList16.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList16.Images.SetKeyName(0, "left-arrow.png");
-            this.imageList16.Images.SetKeyName(1, "right-arrow.png");
-            // 
             // cbReplaceShoolFiles
             // 
             this.cbReplaceShoolFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -687,11 +734,6 @@
             this.btLoadList.Text = "Load List";
             this.btLoadList.UseVisualStyleBackColor = true;
             // 
-            // contextLoadList
-            // 
-            this.contextLoadList.Name = "contextLoadList";
-            this.contextLoadList.Size = new System.Drawing.Size(61, 4);
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -762,14 +804,14 @@
             this.lblFixup.AutoSize = true;
             this.lblFixup.Location = new System.Drawing.Point(61, 64);
             this.lblFixup.Name = "lblFixup";
-            this.lblFixup.Size = new System.Drawing.Size(25, 13);
+            this.lblFixup.Size = new System.Drawing.Size(88, 13);
             this.lblFixup.TabIndex = 1;
-            this.lblFixup.Text = "vvv";
+            this.lblFixup.Text = "999.999.999.999";
             // 
             // lblFixUpDate
             // 
             this.lblFixUpDate.AutoSize = true;
-            this.lblFixUpDate.Location = new System.Drawing.Point(117, 64);
+            this.lblFixUpDate.Location = new System.Drawing.Point(150, 64);
             this.lblFixUpDate.Name = "lblFixUpDate";
             this.lblFixUpDate.Size = new System.Drawing.Size(25, 13);
             this.lblFixUpDate.TabIndex = 1;
@@ -778,7 +820,7 @@
             // lblNGPDate
             // 
             this.lblNGPDate.AutoSize = true;
-            this.lblNGPDate.Location = new System.Drawing.Point(117, 33);
+            this.lblNGPDate.Location = new System.Drawing.Point(150, 33);
             this.lblNGPDate.Name = "lblNGPDate";
             this.lblNGPDate.Size = new System.Drawing.Size(25, 13);
             this.lblNGPDate.TabIndex = 1;
@@ -789,15 +831,15 @@
             this.lblNGP.AutoSize = true;
             this.lblNGP.Location = new System.Drawing.Point(61, 33);
             this.lblNGP.Name = "lblNGP";
-            this.lblNGP.Size = new System.Drawing.Size(25, 13);
+            this.lblNGP.Size = new System.Drawing.Size(88, 13);
             this.lblNGP.TabIndex = 1;
-            this.lblNGP.Text = "vvv";
+            this.lblNGP.Text = "999.999.999.999";
             // 
             // label6
             // 
             this.label6.Location = new System.Drawing.Point(6, 64);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.Size = new System.Drawing.Size(40, 13);
             this.label6.TabIndex = 0;
             this.label6.Text = "FixUp:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -806,7 +848,7 @@
             // 
             this.label4.Location = new System.Drawing.Point(6, 33);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "NGP:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -970,48 +1012,6 @@
             this.btApply.UseVisualStyleBackColor = true;
             this.btApply.Click += new System.EventHandler(this.btApply_Click);
             // 
-            // contextLoadListManage
-            // 
-            this.contextLoadListManage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator5,
-            this.MenuManageSavedCarLists});
-            this.contextLoadListManage.Name = "contextLoadListManage";
-            this.contextLoadListManage.Size = new System.Drawing.Size(199, 32);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(195, 6);
-            // 
-            // MenuManageSavedCarLists
-            // 
-            this.MenuManageSavedCarLists.Name = "MenuManageSavedCarLists";
-            this.MenuManageSavedCarLists.Size = new System.Drawing.Size(198, 22);
-            this.MenuManageSavedCarLists.Text = "Manage Saved Car Lists";
-            this.MenuManageSavedCarLists.Click += new System.EventHandler(this.MenuManageSavedCarLists_Click);
-            // 
-            // contextMenuStripCar
-            // 
-            this.contextMenuStripCar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.updateModelToolStripMenuItem,
-            this.updatePhysicsToolStripMenuItem});
-            this.contextMenuStripCar.Name = "contextMenuStrip2";
-            this.contextMenuStripCar.Size = new System.Drawing.Size(155, 48);
-            // 
-            // updateModelToolStripMenuItem
-            // 
-            this.updateModelToolStripMenuItem.Name = "updateModelToolStripMenuItem";
-            this.updateModelToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.updateModelToolStripMenuItem.Text = "Update Model";
-            this.updateModelToolStripMenuItem.Click += new System.EventHandler(this.updateModelToolStripMenuItem_Click);
-            // 
-            // updatePhysicsToolStripMenuItem
-            // 
-            this.updatePhysicsToolStripMenuItem.Name = "updatePhysicsToolStripMenuItem";
-            this.updatePhysicsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.updatePhysicsToolStripMenuItem.Text = "Update Physics";
-            this.updatePhysicsToolStripMenuItem.Click += new System.EventHandler(this.updatePhysicsToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1022,7 +1022,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(950, 654);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -1034,6 +1033,8 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextLoadListManage.ResumeLayout(false);
+            this.contextMenuStripCar.ResumeLayout(false);
             this.mySplitContainer1.Panel1.ResumeLayout(false);
             this.mySplitContainer1.Panel1.PerformLayout();
             this.mySplitContainer1.Panel2.ResumeLayout(false);
@@ -1044,8 +1045,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvInstalledCars)).EndInit();
-            this.contextLoadListManage.ResumeLayout(false);
-            this.contextMenuStripCar.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

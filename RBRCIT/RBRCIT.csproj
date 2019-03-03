@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="HelperFunctions.cs" />
     <Compile Include="INIFile.cs" />
+    <Compile Include="IniFileHelper.cs" />
     <Compile Include="MenuButton.cs">
       <SubType>Component</SubType>
     </Compile>

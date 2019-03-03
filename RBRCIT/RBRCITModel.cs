@@ -336,12 +336,12 @@ namespace RBRCIT
                 if (DesiredCarList[i].Equals(CurrentCarList[i])) continue;
                 Car c = DesiredCarList[i];
                 string section = "Car0" + i;
-                carsINI.ChangeParameter("FileName", string.Format("Cars\\{0}\\{1}.sgc", c.folder, c.iniFile), section);
-                carsINI.ChangeParameter("IniFile", string.Format("Cars\\{0}\\{1}.ini", c.folder, c.iniFile), section);
-                carsINI.ChangeParameter("ShaderFile", string.Format("Cars\\{0}\\{1}_shaders.ini", c.folder, c.iniFile), section);
-                carsINI.ChangeParameter("ShaderSettings", string.Format("Cars\\{0}\\{1}_shader_settings", c.folder, c.iniFile), section);
-                carsINI.ChangeParameter("TexturePath", string.Format("Cars\\{0}\\Textures", c.folder), section);
-                carsINI.AddOrChangeParameter("CarName", c.manufacturer + " " + c.name, section);
+                carsINI.SetParameter("FileName", string.Format("Cars\\{0}\\{1}.sgc", c.folder, c.iniFile), section);
+                carsINI.SetParameter("IniFile", string.Format("Cars\\{0}\\{1}.ini", c.folder, c.iniFile), section);
+                carsINI.SetParameter("ShaderFile", string.Format("Cars\\{0}\\{1}_shaders.ini", c.folder, c.iniFile), section);
+                carsINI.SetParameter("ShaderSettings", string.Format("Cars\\{0}\\{1}_shader_settings", c.folder, c.iniFile), section);
+                carsINI.SetParameter("TexturePath", string.Format("Cars\\{0}\\Textures", c.folder), section);
+                carsINI.SetParameter("CarName", c.manufacturer + " " + c.name, section);
             }
             carsINI.Save();
         }
@@ -407,9 +407,9 @@ namespace RBRCIT
                 if (DesiredCarList[i].userSettings.Equals(CurrentCarList[i].userSettings)) continue;
                 if (DesiredCarList[i].userSettings.engineSound != null)
                     if (File.Exists("Audio\\Cars\\" + DesiredCarList[i].userSettings.engineSound + ".eng"))
-                        audiocars_ini.ChangeParameter("Car" + i, DesiredCarList[i].userSettings.engineSound, "CARS");
+                        audiocars_ini.SetParameter("Car" + i, DesiredCarList[i].userSettings.engineSound, "CARS");
             }
-            audiocars_ini.ChangeParameter("Car1_LowShelfAmp", "2.0", "CARS");
+            audiocars_ini.SetParameter("Car1_LowShelfAmp", "2.0", "CARS");
             audiocars_ini.SpaceBeforeAndAfterEquals = false;
             audiocars_ini.Save();
         }
@@ -420,29 +420,25 @@ namespace RBRCIT
             {
                 //if (DesiredCarList[i].userSettings.Equals(CurrentCarList[i].userSettings)) continue;
                 Car c = DesiredCarList[i];
-                string filename = "Cars\\" + c.folder + "\\" + c.iniFile + ".ini";
-                new FileInfo(filename).IsReadOnly = false;
-                INIFile carini = new INIFile(filename);
-                carini.ChangeParameter("Switch", c.userSettings.hideSteeringWheel.ToString(), "i_steeringwheel");
-                carini.ChangeParameter("Switch", c.userSettings.hideWipers.ToString(), "i_wiper_l");
-                carini.ChangeParameter("Switch", c.userSettings.hideWipers.ToString(), "i_wiper_r");
-                carini.ChangeParameter("Switch", c.userSettings.hideWindShield.ToString(), "i_window_f");
+                FileInfo fi = new FileInfo("Cars\\" + c.folder + "\\" + c.iniFile + ".ini");
+                fi.IsReadOnly = false;
+                
+                IniFileHelper.WriteValue("i_steeringwheel", "Switch", c.userSettings.hideSteeringWheel.ToString(), fi.FullName);
+                IniFileHelper.WriteValue("i_wiper_l", "Switch", c.userSettings.hideWipers.ToString(), fi.FullName);
+                IniFileHelper.WriteValue("i_wiper_r", "Switch", c.userSettings.hideWipers.ToString(), fi.FullName);
+                IniFileHelper.WriteValue("i_window_f", "Switch", c.userSettings.hideWindShield.ToString(), fi.FullName);
 
                 //apply the overrides defined in RBRCIT.ini (AlwaysHideXXX...)
-                if (rbrcit_ini.GetParameterValueBool("AlwaysHideSteeringWheel"))
-                    carini.ChangeParameter("Switch", "true", "i_steeringwheel");
-                if (rbrcit_ini.GetParameterValueBool("AlwaysHideWipers"))
+                if (rbrcit_ini.GetParameterValueBool("AlwaysHideSteeringWheel", "RBRCIT"))
+                    IniFileHelper.WriteValue("i_steeringwheel", "Switch", true.ToString(), fi.FullName);
+                if (rbrcit_ini.GetParameterValueBool("AlwaysHideWipers", "RBRCIT"))
                 {
-                    carini.ChangeParameter("Switch", "true", "i_wiper_l");
-                    carini.ChangeParameter("Switch", "true", "i_wiper_r");
+                    IniFileHelper.WriteValue("i_wiper_l", "Switch", true.ToString(), fi.FullName);
+                    IniFileHelper.WriteValue("i_wiper_r", "Switch", true.ToString(), fi.FullName);
                 }
-                if (rbrcit_ini.GetParameterValueBool("AlwaysHideWindShield"))
-                    carini.ChangeParameter("Switch", "true", "i_window_f");
-
-                carini.SpaceBeforeAndAfterEquals = false;
-                carini.Save();
+                if (rbrcit_ini.GetParameterValueBool("AlwaysHideWindShield", "RBRCIT"))
+                    IniFileHelper.WriteValue("i_window_f", "Switch", true.ToString(), fi.FullName);
             }
-            
         }
 
         private void WriteCarListUserINI()
@@ -458,17 +454,17 @@ namespace RBRCIT
             INIFile carListUserINI = new INIFile();
             foreach (Car c in AllCars)
             {
-                carListUserINI.AddOrChangeParameter("engineSound", c.userSettings.engineSound, "Car_" + c.nr);
-                carListUserINI.AddOrChangeParameter("hideSteeringWheel", c.userSettings.hideSteeringWheel.ToString(), "Car_" + c.nr);
-                carListUserINI.AddOrChangeParameter("hideWipers", c.userSettings.hideWipers.ToString(), "Car_" + c.nr);
-                carListUserINI.AddOrChangeParameter("hideWindShield", c.userSettings.hideWindShield.ToString(), "Car_" + c.nr);
+                carListUserINI.SetParameter("engineSound", c.userSettings.engineSound, "Car_" + c.nr);
+                carListUserINI.SetParameter("hideSteeringWheel", c.userSettings.hideSteeringWheel.ToString(), "Car_" + c.nr);
+                carListUserINI.SetParameter("hideWipers", c.userSettings.hideWipers.ToString(), "Car_" + c.nr);
+                carListUserINI.SetParameter("hideWindShield", c.userSettings.hideWindShield.ToString(), "Car_" + c.nr);
             }
             carListUserINI.SaveAs("RBRCIT\\carListUser.ini");
         }
 
         private void PatchEXE()
         {
-            if (!rbrcit_ini.GetParameterValueBool("patchEXE")) return;
+            if (!rbrcit_ini.GetParameterValueBool("patchEXE", "RBRCIT")) return;
 
             List<Tuple<int, int>> locations = new List<Tuple<int, int>>(); //offset, length
             locations.Add(new Tuple<int, int>(0x330E50, 0xF));
@@ -533,7 +529,7 @@ namespace RBRCIT
         {
             using (var client = new WebClient())
             {
-                client.DownloadFile(rbrcit_ini.GetParameterValue("carlist_ini_url"), "RBRCIT\\carlist\\carList.ini");
+                client.DownloadFile(rbrcit_ini.GetParameterValue("carlist_ini_url", "RBRCIT"), "RBRCIT\\carlist\\carList.ini");
             }
             LoadAll();
         }
