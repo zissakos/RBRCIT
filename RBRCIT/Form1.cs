@@ -488,10 +488,7 @@ namespace RBRCIT
             string filename = Path.Combine(Directory.GetParent(Application.LocalUserAppDataPath).FullName, "windowstate.txt");
             StreamWriter sw = new StreamWriter(filename);
             sw.WriteLine(WindowStateFileVersion);
-            if (Location.X < 0 || Location.Y < 0)
-                sw.WriteLine("10;10");
-            else
-                sw.WriteLine(Location.X + ";" + Location.Y);
+            sw.WriteLine(Location.X + ";" + Location.Y);
             sw.WriteLine(Size.Width + ";" + Size.Height);
             sw.WriteLine(mySplitContainer1.SplitterDistance);
             sw.WriteLine(Convert.ToBase64String(olvAllCars.SaveState()));
@@ -510,6 +507,7 @@ namespace RBRCIT
                 if (version != WindowStateFileVersion) return;
                 string[] coords = sr.ReadLine().Split(';');
                 Location = new Point(int.Parse(coords[0]), int.Parse(coords[1]));
+                if (Location.X < 0 || Location.Y < 0) Location = new Point(10, 10);
                 coords = sr.ReadLine().Split(';');
                 Size = new Size(int.Parse(coords[0]), int.Parse(coords[1]));
                 mySplitContainer1.SplitterDistance = int.Parse(sr.ReadLine());
