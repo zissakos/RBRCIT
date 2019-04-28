@@ -21,7 +21,7 @@ namespace RBRCIT
         //The "working" list of cars in the right panel. On loading, it is an exact copy of CurrentCarList.
         //Any change (add/remove car) is only applied to this list. This way we know what is to be changed from the current car installation
         //(DesiredCarList != CurrentCarList) and we can mark it e.g. in a different color.
-        //When APPLY is clicked, this list is written into all the ini files. 
+        //When APPLY is clicked, this list is written into all the ini files.
         //Then the currently installed cars are re-read again in LoadCurrentCars() which populates CurrentCarList and DesiredCarList.
         public List<Car> DesiredCarList;
 
@@ -37,15 +37,18 @@ namespace RBRCIT
         //Is audio.dat extracted into Audio\ subfolder and non-existent?
         public bool UseAudio;
 
+        public bool UseExternalUnzipper;
+        public string PathToExternalUnzipper;
+        public string ExternalUnzipperArguments;
+
         private INIFile carlist_ini;
         private INIFile carlistuser_ini;
         private INIFile rbrcit_ini;
         private string[] PhysicsFolders;
         private string[] BackupFiles;
-        
+
         //we save a reference to the mainform so we can call its update methods when the models (lists) have changed
         private Form1 mainForm;
-
 
         public RBRCITModel(Form1 form)
         {
@@ -55,6 +58,11 @@ namespace RBRCIT
         public void Load()
         {
             rbrcit_ini = new INIFile("RBRCIT.ini");
+
+            UseExternalUnzipper = false;
+            PathToExternalUnzipper = rbrcit_ini.GetParameterValue("external_unzipper", "ArchiveHandling");
+            ExternalUnzipperArguments = rbrcit_ini.GetParameterValue("arguments_extract", "ArchiveHandling");
+            UseExternalUnzipper = (PathToExternalUnzipper != null) && (File.Exists(PathToExternalUnzipper));
 
             AllCars = new List<Car>();
             CurrentCarList = new List<Car>();
@@ -371,7 +379,6 @@ namespace RBRCIT
                 }
             }
 
-
             //special handling for school car
             if (replaceSchoolFiles)
             {
@@ -422,7 +429,7 @@ namespace RBRCIT
                 Car c = DesiredCarList[i];
                 FileInfo fi = new FileInfo("Cars\\" + c.folder + "\\" + c.iniFile + ".ini");
                 fi.IsReadOnly = false;
-                
+
                 IniFileHelper.WriteValue("i_steeringwheel", "Switch", c.userSettings.hideSteeringWheel.ToString(), fi.FullName);
                 IniFileHelper.WriteValue("i_wiper_l", "Switch", c.userSettings.hideWipers.ToString(), fi.FullName);
                 IniFileHelper.WriteValue("i_wiper_r", "Switch", c.userSettings.hideWipers.ToString(), fi.FullName);
@@ -542,7 +549,7 @@ namespace RBRCIT
                 job.title = c.manufacturer + " " + c.name;
                 job.URL = c.link_model;
                 job.path = "Cars\\";
-                FormDownload fd = new FormDownload(job);
+                FormDownload fd = new FormDownload(job, this);
                 fd.FormClosed += FormDownloadClosedAllCars;
                 fd.ShowAtCenterParent(mainForm);
             }
@@ -558,7 +565,7 @@ namespace RBRCIT
             job.title = c.manufacturer + " " + c.name;
             job.URL = c.link_physics;
             job.path = "RBRCIT\\physics\\";
-            FormDownload fd = new FormDownload(job);
+            FormDownload fd = new FormDownload(job, this);
             fd.FormClosed += FormDownloadClosedAllCars;
             fd.ShowAtCenterParent(mainForm);
         }
@@ -582,7 +589,7 @@ namespace RBRCIT
                 MessageBox.Show("No missing physics. All physics are there.");
                 return;
             }
-            FormDownload fd = new FormDownload(jobs);
+            FormDownload fd = new FormDownload(jobs, this);
             fd.FormClosed += FormDownloadClosedAllCars;
             fd.ShowAtCenterParent(mainForm);
         }
@@ -606,7 +613,7 @@ namespace RBRCIT
                 MessageBox.Show("No existing physics. Download Physics first.");
                 return;
             }
-            FormDownload fd = new FormDownload(jobs);
+            FormDownload fd = new FormDownload(jobs, this);
             fd.FormClosed += FormDownloadClosedAllCars;
             fd.ShowAtCenterParent(mainForm);
         }
@@ -631,7 +638,7 @@ namespace RBRCIT
             dj.title = "NGP Plugin";
             //dj.URL = rbrcit_ini.GetParameterValue("plugin_physics_url");
             dj.URL = carlist_ini.GetParameterValue("plugin_physics_url", "Plugins");
-            FormDownload fd = new FormDownload(dj);
+            FormDownload fd = new FormDownload(dj, this);
             fd.FormClosed += FormDownloadClosedNGP;
             fd.ShowAtCenterParent(mainForm);
         }
@@ -656,7 +663,7 @@ namespace RBRCIT
             dj.title = "FixUp Plugin";
             //dj.URL = rbrcit_ini.GetParameterValue("plugin_fixup_url");
             dj.URL = carlist_ini.GetParameterValue("plugin_fixup_url", "Plugins");
-            FormDownload fd = new FormDownload(dj);
+            FormDownload fd = new FormDownload(dj, this);
             fd.FormClosed += FormDownloadClosedPlugin;
             fd.ShowAtCenterParent(mainForm);
         }
@@ -678,6 +685,22 @@ namespace RBRCIT
         private void FormDownloadClosedPlugin(object sender, FormClosedEventArgs e)
         {
             mainForm.UpdatePlugins();
+        }
+
+        public void ExtractFile(string path, string outputdir)
+        {
+            if (UseExternalUnzipper)
+            {
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = PathToExternalUnzipper;
+                psi.Arguments = ExternalUnzipperArguments.Replace("%1%", path).Replace("%2%", outputdir);
+                Process myProcess = Process.Start(psi);
+                myProcess.WaitForExit();
+            }
+            else
+            {
+                ZipManager.ExtractToDirectory(path, outputdir);
+            }
         }
 
         public void ExtractAudioDAT()

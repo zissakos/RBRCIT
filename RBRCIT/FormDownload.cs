@@ -27,17 +27,19 @@ namespace RBRCIT
         public List<DownloadJob> jobQueue;
         int currentJob;
         int totalJobs;
+        private RBRCITModel rbrcit;
 
-        public FormDownload(List<DownloadJob> jobs)
+        public FormDownload(List<DownloadJob> jobs, RBRCITModel model)
         {
             InitializeComponent();
             jobQueue = new List<DownloadJob>(jobs);
             currentJob = 0;
             totalJobs = jobQueue.Count;
+            rbrcit = model;
             downloadNextJob();
         }
 
-        public FormDownload(DownloadJob job) : this (new List<DownloadJob>() { job })
+        public FormDownload(DownloadJob job, RBRCITModel model) : this (new List<DownloadJob>() { job }, model)
         {
         }
 
@@ -77,7 +79,8 @@ namespace RBRCIT
             fs.Write(e.Result, 0, e.Result.Length);
             fs.Close();
 
-            ZipManager.ExtractToDirectory(filename, job.path);
+            //ZipManager.ExtractToDirectory(filename, job.path);
+            rbrcit.ExtractFile(filename, job.path);
 
             File.Delete(filename);
             jobQueue.RemoveAt(jobQueue.Count - 1);

@@ -53,6 +53,10 @@ Check the "Tools" and "Downloads" menus for
 
 Version History
 ---------------------------------------------------------------------
+1.0.6 2019-04-28
+	* For unzipping downloaded files an external program (like 7zip) can now be used. Much faster and more reliable.
+	  -> New parameters in RBRCIT.ini (preconfigured for 7zip)
+
 1.0.5 2019-03-03
 	* fixed some ini parsing errors (e.g. with file 126p.ini)
 	* refactoring of ini parsing code
