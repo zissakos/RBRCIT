@@ -53,7 +53,13 @@ namespace RBRCIT
             LoadWindowState();
 
             col2Sound.IsVisible = rbrcit.UseAudio;
+            
+            
+            col2FMODSoundBank.IsVisible = rbrcit.FMODAvailable;
+            colFMODSoundBank.IsVisible = rbrcit.FMODAvailable;
             olvInstalledCars.RebuildColumns();
+            
+
 
             //this is for sorting in ungrouped state. When grouped, see event handler olvAllCars_BeforeCreatingGroups
             //make sure it is being sorted by Manufacturer and Name additionally
@@ -116,13 +122,16 @@ namespace RBRCIT
             olvInstalledCars.SelectedIndex = 0;
         }
 
-        public void UpdatePlugins()
+        public void UpdatePluginsPanel()
         {
+            string version_ngp = "";
+            string version_fixup = "";
+
             if (rbrcit.PluginExistsNGP())
             {
-                string version = rbrcit.GetPluginVersionNGP();
-                lblNGP.Text = version.Substring(0, version.IndexOf(' '));
-                lblNGPDate.Text = version.Substring(version.IndexOf(' '));
+                version_ngp = rbrcit.GetPluginVersionNGP();
+                lblNGP.Text = version_ngp.Substring(0, version_ngp.IndexOf(' '));
+                lblNGPDate.Text = version_ngp.Substring(version_ngp.IndexOf(' '));
                 btNGP.Text = "Update";
                 btNGPConfigure.Enabled = true;
             }
@@ -135,9 +144,9 @@ namespace RBRCIT
             }
             if (rbrcit.PluginExistsFixUp())
             {
-                string version = rbrcit.GetPluginVersionFixUp();
-                lblFixup.Text = version.Substring(0, version.IndexOf(' '));
-                lblFixUpDate.Text = version.Substring(version.IndexOf(' '));
+                version_fixup = rbrcit.GetPluginVersionFixUp();
+                lblFixup.Text = version_fixup.Substring(0, version_fixup.IndexOf(' '));
+                lblFixUpDate.Text = version_fixup.Substring(version_fixup.IndexOf(' '));
                 btFixup.Text = "Update";
                 btFixupConfigure.Enabled = true;
             }
@@ -149,10 +158,52 @@ namespace RBRCIT
                 btFixupConfigure.Enabled = false;
             }
             
-            //enable plugin buttons
+            //enable plugin buttons (in any case)
             btNGP.Enabled = true;
             btFixup.Enabled = true;
+        }
 
+        public void UpdateFMODPanel()
+        {
+            if (rbrcit.FMODAvailable)
+            {
+                col2FMODSoundBank.IsVisible = true;
+                colFMODSoundBank.IsVisible = true;
+                olvAllCars.RebuildColumns();
+                olvInstalledCars.RebuildColumns();
+
+                lblFMODStatus.Text = (rbrcit.FMODEnabled ? "Enabled" : "Disabled");
+                btFmodEnable.Enabled = !rbrcit.FMODEnabled;
+                btFmodDisable.Enabled = rbrcit.FMODEnabled;
+                btFMODConfigure.Enabled = rbrcit.AudioFMODiniExists();
+
+                if (rbrcit.AudioFMODExists())
+                {
+                    lblFMODVersion.Text = rbrcit.GetAudioFMODVersion();
+                    btFMOD.Text = "Update";
+                    btFMOD.Enabled = true;
+                }
+                else
+                {
+                    btFMOD.Text = "Download";
+                    if (rbrcit.GetAudioFMOD_URL() != "")
+                    {
+                        lblFMODVersion.Text = "Not downloaded yet. Please Download.";
+                        btFMOD.Enabled = true; 
+                    }
+                    else
+                    {
+                        lblFMODVersion.Text = "Currently WIP. Contains global effects (tyres, impacts, etc.). \nPlease wait for download link in future carList.ini update.";
+                        btFMOD.Enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                lblFMODStatus.Text = "Not Available. Requires NGP version 6.3.758.431 and FixUp version 4.0";
+                lblFMODVersion.Text = "";
+                btFMOD.Text = "Download";
+            }
         }
 
         public void UpdateSavedLists()
@@ -216,7 +267,7 @@ namespace RBRCIT
         private void olvAllCars_FormatCell(object sender, FormatCellEventArgs e)
         {
             Car c = (Car)e.Model;
-            if ((e.Column == colModel) || (e.Column == colPhysics))
+            if (e.Column == colModel)
             {
                 if ((bool)e.CellValue)
                 {
@@ -228,11 +279,49 @@ namespace RBRCIT
                 else
                 {
                     e.SubItem.Text = "download";
-                    if (e.Column == colModel)
-                        if (c.link_model != null) e.SubItem.Url = c.link_model;
-                        else e.SubItem.Url = "http://www.ly-racing.de/viewtopic.php?t=7878";
-                    if (e.Column == colPhysics)
-                        e.SubItem.Url = c.link_physics;
+                    if (c.link_model != null)
+                        e.SubItem.Url = c.link_model;
+                    else
+                        e.SubItem.Url = "http://www.ly-racing.de/viewtopic.php?t=7878";
+                }
+            }
+            if (e.Column == colPhysics)
+            {
+                if ((bool)e.CellValue)
+                {
+                    e.SubItem.Font = BoldFont;
+                    e.SubItem.ForeColor = Green;
+                    e.SubItem.Text = "found";
+                    e.SubItem.Url = null;
+                }
+                else
+                {
+                    e.SubItem.Text = "download";
+                    e.SubItem.Url = c.link_physics;
+                }
+            }
+            if (e.Column == colFMODSoundBank)
+            {
+                if ((bool)e.CellValue)
+                {
+                    e.SubItem.Font = BoldFont;
+                    e.SubItem.ForeColor = Green;
+                    e.SubItem.Text = "found";
+                    e.SubItem.Url = null;
+                }
+                else
+                {
+                    e.SubItem.Text = "download";
+                    if (c.link_banks != null)
+                    {
+                        e.SubItem.Url = c.link_banks;
+                    }
+                    else
+                    {
+                        e.SubItem.Text = "n.a.";
+                        e.SubItem.ForeColor = Gray;
+                        e.SubItem.Url = null;
+                    }
                 }
             }
             if (e.Column == colAction)
@@ -274,6 +363,10 @@ namespace RBRCIT
             else if (e.Column == colPhysics)
             {
                 rbrcit.DownloadCarPhysics(c);
+            }
+            else if (e.Column == colFMODSoundBank)
+            {
+                rbrcit.DownloadCarSoundBank(c);
             }
             e.Handled = true;
         }
@@ -383,6 +476,7 @@ namespace RBRCIT
         {
             if (e.RowIndex < 0) return; //disable on header
             if (e.Column == col2Sound) olvInstalledCars.Cursor = Cursors.Hand;
+            if (e.Column == col2FMODSoundBank) olvInstalledCars.Cursor = Cursors.Hand;
             else olvInstalledCars.Cursor = Cursors.Default;
         }
 
@@ -416,7 +510,52 @@ namespace RBRCIT
                     UpdateApplyButton();
                 }
             }
+            if (e.Column == col2FMODSoundBank)
+            {
+                if (!rbrcit.FMODAvailable)
+                {
+                    MessageBox.Show("FMOD Sound System is not available. Check plugin versions.");
+                    return;
+                }
+                if (!rbrcit.FMODEnabled)
+                {
+                    MessageBox.Show("FMOD Sound System is not enabled. Please enable it below.");
+                    return;
+                }
+                Car c = (Car)e.Model;
+                if (c.nr == null)
+                {
+                    MessageBox.Show("This car is not known in the carList.ini." +
+                        "\nTherefore you cannot change anything on it.");
+                    return;
+                }
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Title = "Choose FMOD Sound Bank for: " + c.manufacturer + " " + c.name;
+                ofd.Filter = "FMOD SoundBank (*.bank) | *.bank";
+                ofd.InitialDirectory = Application.StartupPath + "\\AudioFMOD";
+                ofd.FileOk += Ofd_FileOk;
+                if (ofd.ShowDialog(this) == DialogResult.OK)
+                {
+                    FileInfo fi = new FileInfo(ofd.FileName);
+                    c.userSettings.FMODSoundBank = fi.Name.Replace(fi.Extension, "");
+                    rbrcit.DesiredCarList[e.RowIndex] = c;
+                    olvInstalledCars.SetObjects(rbrcit.DesiredCarList);
+                    UpdateApplyButton();
+                }
+            }
+
         }
+
+        private void Ofd_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            OpenFileDialog ofd = (OpenFileDialog)sender;
+            if (ofd.FileName.Contains("strings.bank"))
+            {
+                MessageBox.Show("Please only select *.bank files, not *.string.bank files!");
+                e.Cancel = true;
+            }
+        }
+
         private void btSaveList_Click(object sender, EventArgs e)
         {
             FormSaveList fsl = new FormSaveList();
@@ -601,6 +740,30 @@ namespace RBRCIT
             Car c = (Car)contextMenuStripCar.Tag;
             rbrcit.DownloadCarPhysics(c);
         }
+
+        private void BtFmodEnable_Click(object sender, EventArgs e)
+        {
+            rbrcit.SetFMODEnabled(true);
+        }
+
+        private void BtFmodDisable_Click(object sender, EventArgs e)
+        {
+            rbrcit.SetFMODEnabled(false);
+        }
+
+        private void BtFMODConfigure_Click(object sender, EventArgs e)
+        {
+            string filename = "AudioFMOD\\AudioFMOD.ini";
+            if (File.Exists(filename)) Process.Start(filename);
+
+        }
+
+        private void BtFMOD_Click(object sender, EventArgs e)
+        {
+            btFMOD.Enabled = false;
+            rbrcit.DownloadAudioFMOD();
+        }
+
         private void MenuBackup_Click(object sender, EventArgs e)
         {
             rbrcit.Backup();

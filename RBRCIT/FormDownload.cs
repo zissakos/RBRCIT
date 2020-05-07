@@ -23,7 +23,7 @@ namespace RBRCIT
 
     public partial class FormDownload : Form
     {
-        string filename;
+        public string filename;
         public List<DownloadJob> jobQueue;
         int currentJob;
         int totalJobs;
@@ -53,6 +53,7 @@ namespace RBRCIT
                 //else filename = "Cars\\" + c.folder + ".7z";
                 currentJob++;
                 label1.Text = job.title + " (" + currentJob + " of " + totalJobs + " Files)";
+                label3.Text = job.URL.Replace("%20", " ");
                 using (var client = new WebClient())
                 {
                     client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
@@ -69,6 +70,13 @@ namespace RBRCIT
 
         private void Client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message);
+                Close();
+                return;
+            }
+
             DownloadJob job = jobQueue[jobQueue.Count - 1];
 
             WebClient wc = (WebClient)e.UserState;

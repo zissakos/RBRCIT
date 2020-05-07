@@ -14,6 +14,7 @@ namespace RBRCIT
         public string trans;
         public string link_physics;
         public string link_model;
+        public string link_banks;
 
         //extended 
         public string manufacturer;
@@ -22,6 +23,7 @@ namespace RBRCIT
         public int weight;
         public bool model_exists;
         public bool physics_exists;
+        public bool banks_exist;
         
         public CarUserSettings userSettings;
     }
@@ -29,6 +31,7 @@ namespace RBRCIT
     public struct CarUserSettings
     {
         public string engineSound;
+        public string FMODSoundBank;
         public bool hideSteeringWheel;
         public bool hideWipers;
         public bool hideWindShield;

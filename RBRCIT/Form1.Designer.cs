@@ -83,8 +83,19 @@
             this.colWeight = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colModel = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colPhysics = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.colFMODSoundBank = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colAction = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.myButtonRendererAdd = new RBRCIT.MyButtonRenderer();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btFMODConfigure = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btFMOD = new System.Windows.Forms.Button();
+            this.lblFMODVersion = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btFmodEnable = new System.Windows.Forms.Button();
+            this.btFmodDisable = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblFMODStatus = new System.Windows.Forms.Label();
             this.cbReplaceShoolFiles = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -116,6 +127,7 @@
             this.col2Name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.col2Trans = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.col2Sound = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.col2FMODSoundBank = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.col2Settings = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.myButtonRendererSettings = new RBRCIT.MyButtonRenderer();
             this.button1 = new System.Windows.Forms.Button();
@@ -130,6 +142,8 @@
             this.mySplitContainer1.Panel2.SuspendLayout();
             this.mySplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvAllCars)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvInstalledCars)).BeginInit();
             this.SuspendLayout();
@@ -184,7 +198,7 @@
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1194, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1284, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -199,7 +213,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.MenuExit_Click);
             // 
@@ -229,7 +243,7 @@
             this.MenuBackup,
             this.MenuRestore});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             this.toolsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.toolsToolStripMenuItem_DropDownOpening);
             // 
@@ -284,21 +298,21 @@
             // MenuUpdateCarList
             // 
             this.MenuUpdateCarList.Name = "MenuUpdateCarList";
-            this.MenuUpdateCarList.Size = new System.Drawing.Size(214, 22);
+            this.MenuUpdateCarList.Size = new System.Drawing.Size(215, 22);
             this.MenuUpdateCarList.Text = "Update carList.ini";
             this.MenuUpdateCarList.Click += new System.EventHandler(this.MenuUpdateCarList_Click);
             // 
             // MenuDownloadMissingPhysics
             // 
             this.MenuDownloadMissingPhysics.Name = "MenuDownloadMissingPhysics";
-            this.MenuDownloadMissingPhysics.Size = new System.Drawing.Size(214, 22);
+            this.MenuDownloadMissingPhysics.Size = new System.Drawing.Size(215, 22);
             this.MenuDownloadMissingPhysics.Text = "Download Missing Physics";
             this.MenuDownloadMissingPhysics.Click += new System.EventHandler(this.MenuDownloadMissingPhysics_Click);
             // 
             // MenuUpdateAllExistingPhysics
             // 
             this.MenuUpdateAllExistingPhysics.Name = "MenuUpdateAllExistingPhysics";
-            this.MenuUpdateAllExistingPhysics.Size = new System.Drawing.Size(214, 22);
+            this.MenuUpdateAllExistingPhysics.Size = new System.Drawing.Size(215, 22);
             this.MenuUpdateAllExistingPhysics.Text = "Update All Existing Physics";
             this.MenuUpdateAllExistingPhysics.Click += new System.EventHandler(this.MenuUpdateAllExistingPhysics_Click);
             // 
@@ -345,9 +359,9 @@
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3,
             this.toolStripStatusLabel4});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 589);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 684);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1194, 27);
+            this.statusStrip1.Size = new System.Drawing.Size(1284, 27);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -468,6 +482,7 @@
             // 
             // mySplitContainer1.Panel2
             // 
+            this.mySplitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.mySplitContainer1.Panel2.Controls.Add(this.cbReplaceShoolFiles);
             this.mySplitContainer1.Panel2.Controls.Add(this.label12);
             this.mySplitContainer1.Panel2.Controls.Add(this.label11);
@@ -484,9 +499,9 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.olvInstalledCars);
             this.mySplitContainer1.Panel2.Controls.Add(this.button1);
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
-            this.mySplitContainer1.Panel2MinSize = 460;
-            this.mySplitContainer1.Size = new System.Drawing.Size(1194, 565);
-            this.mySplitContainer1.SplitterDistance = 642;
+            this.mySplitContainer1.Panel2MinSize = 650;
+            this.mySplitContainer1.Size = new System.Drawing.Size(1284, 660);
+            this.mySplitContainer1.SplitterDistance = 618;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -510,6 +525,7 @@
             this.olvAllCars.AllColumns.Add(this.colWeight);
             this.olvAllCars.AllColumns.Add(this.colModel);
             this.olvAllCars.AllColumns.Add(this.colPhysics);
+            this.olvAllCars.AllColumns.Add(this.colFMODSoundBank);
             this.olvAllCars.AllColumns.Add(this.colAction);
             this.olvAllCars.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -525,6 +541,7 @@
             this.colWeight,
             this.colModel,
             this.colPhysics,
+            this.colFMODSoundBank,
             this.colAction});
             this.olvAllCars.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvAllCars.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -533,6 +550,7 @@
             this.olvAllCars.GroupWithItemCountFormat = "{0} [{1} cars]";
             this.olvAllCars.GroupWithItemCountSingularFormat = "{0} [{1} car]";
             this.olvAllCars.HeaderMinimumHeight = 30;
+            this.olvAllCars.HideSelection = false;
             this.olvAllCars.HyperlinkStyle = this.hyperlinkStyle1;
             this.olvAllCars.Location = new System.Drawing.Point(15, 25);
             this.olvAllCars.MultiSelect = false;
@@ -541,7 +559,7 @@
             this.olvAllCars.ShowCommandMenuOnRightClick = true;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(624, 527);
+            this.olvAllCars.Size = new System.Drawing.Size(600, 622);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -619,6 +637,14 @@
             this.colPhysics.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.colPhysics.Width = 65;
             // 
+            // colFMODSoundBank
+            // 
+            this.colFMODSoundBank.AspectName = "banks_exist";
+            this.colFMODSoundBank.Hyperlink = true;
+            this.colFMODSoundBank.Text = "SoundBank";
+            this.colFMODSoundBank.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colFMODSoundBank.Width = 65;
+            // 
             // colAction
             // 
             this.colAction.AspectName = "cat";
@@ -641,11 +667,132 @@
             this.myButtonRendererAdd.ImageList = this.imageList16;
             this.myButtonRendererAdd.SizingMode = BrightIdeasSoftware.OLVColumn.ButtonSizingMode.CellBounds;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.btFMODConfigure);
+            this.groupBox2.Controls.Add(this.groupBox3);
+            this.groupBox2.Controls.Add(this.btFmodEnable);
+            this.groupBox2.Controls.Add(this.btFmodDisable);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.lblFMODStatus);
+            this.groupBox2.Location = new System.Drawing.Point(18, 477);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(620, 123);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "FMOD Sound System";
+            // 
+            // btFMODConfigure
+            // 
+            this.btFMODConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btFMODConfigure.Enabled = false;
+            this.btFMODConfigure.Location = new System.Drawing.Point(529, 17);
+            this.btFMODConfigure.Name = "btFMODConfigure";
+            this.btFMODConfigure.Size = new System.Drawing.Size(80, 23);
+            this.btFMODConfigure.TabIndex = 2;
+            this.btFMODConfigure.Text = "Configure";
+            this.btFMODConfigure.UseVisualStyleBackColor = true;
+            this.btFMODConfigure.Click += new System.EventHandler(this.BtFMODConfigure_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.btFMOD);
+            this.groupBox3.Controls.Add(this.lblFMODVersion);
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.Location = new System.Drawing.Point(6, 56);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(602, 58);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "optional:";
+            // 
+            // btFMOD
+            // 
+            this.btFMOD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btFMOD.Enabled = false;
+            this.btFMOD.Location = new System.Drawing.Point(516, 19);
+            this.btFMOD.Name = "btFMOD";
+            this.btFMOD.Size = new System.Drawing.Size(80, 23);
+            this.btFMOD.TabIndex = 2;
+            this.btFMOD.Text = "Update";
+            this.btFMOD.UseVisualStyleBackColor = true;
+            this.btFMOD.Click += new System.EventHandler(this.BtFMOD_Click);
+            // 
+            // lblFMODVersion
+            // 
+            this.lblFMODVersion.Location = new System.Drawing.Point(82, 24);
+            this.lblFMODVersion.Name = "lblFMODVersion";
+            this.lblFMODVersion.Size = new System.Drawing.Size(428, 31);
+            this.lblFMODVersion.TabIndex = 0;
+            this.lblFMODVersion.Text = "xxx";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(5, 24);
+            this.label13.MaximumSize = new System.Drawing.Size(260, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(68, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "AudioFMOD:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btFmodEnable
+            // 
+            this.btFmodEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btFmodEnable.Enabled = false;
+            this.btFmodEnable.Location = new System.Drawing.Point(412, 17);
+            this.btFmodEnable.Name = "btFmodEnable";
+            this.btFmodEnable.Size = new System.Drawing.Size(49, 23);
+            this.btFmodEnable.TabIndex = 2;
+            this.btFmodEnable.Text = "Enable";
+            this.btFmodEnable.UseVisualStyleBackColor = true;
+            this.btFmodEnable.Click += new System.EventHandler(this.BtFmodEnable_Click);
+            // 
+            // btFmodDisable
+            // 
+            this.btFmodDisable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btFmodDisable.Enabled = false;
+            this.btFmodDisable.Location = new System.Drawing.Point(467, 17);
+            this.btFmodDisable.Name = "btFmodDisable";
+            this.btFmodDisable.Size = new System.Drawing.Size(56, 23);
+            this.btFmodDisable.TabIndex = 2;
+            this.btFmodDisable.Text = "Disable";
+            this.btFmodDisable.UseVisualStyleBackColor = true;
+            this.btFmodDisable.Click += new System.EventHandler(this.BtFmodDisable_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 22);
+            this.label14.MaximumSize = new System.Drawing.Size(260, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(40, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Status:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblFMODStatus
+            // 
+            this.lblFMODStatus.AutoSize = true;
+            this.lblFMODStatus.Location = new System.Drawing.Point(88, 22);
+            this.lblFMODStatus.MaximumSize = new System.Drawing.Size(260, 0);
+            this.lblFMODStatus.Name = "lblFMODStatus";
+            this.lblFMODStatus.Size = new System.Drawing.Size(24, 13);
+            this.lblFMODStatus.TabIndex = 0;
+            this.lblFMODStatus.Text = "text";
+            this.lblFMODStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // cbReplaceShoolFiles
             // 
             this.cbReplaceShoolFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbReplaceShoolFiles.AutoSize = true;
-            this.cbReplaceShoolFiles.Location = new System.Drawing.Point(342, 313);
+            this.cbReplaceShoolFiles.Location = new System.Drawing.Point(460, 313);
             this.cbReplaceShoolFiles.Name = "cbReplaceShoolFiles";
             this.cbReplaceShoolFiles.Size = new System.Drawing.Size(178, 17);
             this.cbReplaceShoolFiles.TabIndex = 13;
@@ -750,7 +897,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(18, 377);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(502, 94);
+            this.groupBox1.Size = new System.Drawing.Size(620, 94);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Plugins";
@@ -758,7 +905,7 @@
             // btFixupConfigure
             // 
             this.btFixupConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixupConfigure.Location = new System.Drawing.Point(411, 59);
+            this.btFixupConfigure.Location = new System.Drawing.Point(529, 59);
             this.btFixupConfigure.Name = "btFixupConfigure";
             this.btFixupConfigure.Size = new System.Drawing.Size(80, 23);
             this.btFixupConfigure.TabIndex = 3;
@@ -769,9 +916,9 @@
             // btFixup
             // 
             this.btFixup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixup.Location = new System.Drawing.Point(314, 59);
+            this.btFixup.Location = new System.Drawing.Point(442, 59);
             this.btFixup.Name = "btFixup";
-            this.btFixup.Size = new System.Drawing.Size(91, 23);
+            this.btFixup.Size = new System.Drawing.Size(81, 23);
             this.btFixup.TabIndex = 3;
             this.btFixup.Text = "Update";
             this.btFixup.UseVisualStyleBackColor = true;
@@ -780,7 +927,7 @@
             // btNGPConfigure
             // 
             this.btNGPConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNGPConfigure.Location = new System.Drawing.Point(411, 28);
+            this.btNGPConfigure.Location = new System.Drawing.Point(529, 28);
             this.btNGPConfigure.Name = "btNGPConfigure";
             this.btNGPConfigure.Size = new System.Drawing.Size(80, 23);
             this.btNGPConfigure.TabIndex = 2;
@@ -791,9 +938,9 @@
             // btNGP
             // 
             this.btNGP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNGP.Location = new System.Drawing.Point(314, 28);
+            this.btNGP.Location = new System.Drawing.Point(442, 28);
             this.btNGP.Name = "btNGP";
-            this.btNGP.Size = new System.Drawing.Size(91, 23);
+            this.btNGP.Size = new System.Drawing.Size(81, 23);
             this.btNGP.TabIndex = 2;
             this.btNGP.Text = "Update";
             this.btNGP.UseVisualStyleBackColor = true;
@@ -811,7 +958,7 @@
             // lblFixUpDate
             // 
             this.lblFixUpDate.AutoSize = true;
-            this.lblFixUpDate.Location = new System.Drawing.Point(150, 64);
+            this.lblFixUpDate.Location = new System.Drawing.Point(148, 64);
             this.lblFixUpDate.Name = "lblFixUpDate";
             this.lblFixUpDate.Size = new System.Drawing.Size(25, 13);
             this.lblFixUpDate.TabIndex = 1;
@@ -820,7 +967,7 @@
             // lblNGPDate
             // 
             this.lblNGPDate.AutoSize = true;
-            this.lblNGPDate.Location = new System.Drawing.Point(150, 33);
+            this.lblNGPDate.Location = new System.Drawing.Point(148, 33);
             this.lblNGPDate.Name = "lblNGPDate";
             this.lblNGPDate.Size = new System.Drawing.Size(25, 13);
             this.lblNGPDate.TabIndex = 1;
@@ -880,6 +1027,7 @@
             this.olvInstalledCars.AllColumns.Add(this.col2Name);
             this.olvInstalledCars.AllColumns.Add(this.col2Trans);
             this.olvInstalledCars.AllColumns.Add(this.col2Sound);
+            this.olvInstalledCars.AllColumns.Add(this.col2FMODSoundBank);
             this.olvInstalledCars.AllColumns.Add(this.col2Settings);
             this.olvInstalledCars.AllowColumnReorder = true;
             this.olvInstalledCars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -892,6 +1040,7 @@
             this.col2Name,
             this.col2Trans,
             this.col2Sound,
+            this.col2FMODSoundBank,
             this.col2Settings});
             this.olvInstalledCars.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvInstalledCars.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -906,7 +1055,7 @@
             this.olvInstalledCars.RowHeight = 30;
             this.olvInstalledCars.ShowGroups = false;
             this.olvInstalledCars.ShowImagesOnSubItems = true;
-            this.olvInstalledCars.Size = new System.Drawing.Size(502, 282);
+            this.olvInstalledCars.Size = new System.Drawing.Size(620, 282);
             this.olvInstalledCars.TabIndex = 1;
             this.olvInstalledCars.UnfocusedSelectedBackColor = System.Drawing.SystemColors.Highlight;
             this.olvInstalledCars.UnfocusedSelectedForeColor = System.Drawing.SystemColors.HighlightText;
@@ -970,6 +1119,12 @@
             this.col2Sound.FillsFreeSpace = true;
             this.col2Sound.Text = "Sound";
             // 
+            // col2FMODSoundBank
+            // 
+            this.col2FMODSoundBank.AspectName = "userSettings.FMODSoundBank";
+            this.col2FMODSoundBank.Text = "FMOD Sound Bank";
+            this.col2FMODSoundBank.Width = 114;
+            // 
             // col2Settings
             // 
             this.col2Settings.AspectName = "name";
@@ -993,7 +1148,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(429, 515);
+            this.button1.Location = new System.Drawing.Point(547, 610);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 37);
             this.button1.TabIndex = 3;
@@ -1004,7 +1159,7 @@
             // btApply
             // 
             this.btApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btApply.Location = new System.Drawing.Point(332, 515);
+            this.btApply.Location = new System.Drawing.Point(450, 610);
             this.btApply.Name = "btApply";
             this.btApply.Size = new System.Drawing.Size(91, 37);
             this.btApply.TabIndex = 3;
@@ -1016,13 +1171,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1194, 616);
+            this.ClientSize = new System.Drawing.Size(1284, 711);
             this.Controls.Add(this.mySplitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(950, 654);
+            this.MinimumSize = new System.Drawing.Size(1300, 750);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "RBRCIT - RBR Car Installation Tool";
@@ -1042,6 +1197,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.mySplitContainer1)).EndInit();
             this.mySplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.olvAllCars)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.olvInstalledCars)).EndInit();
@@ -1139,6 +1298,18 @@
         private System.Windows.Forms.ToolStripMenuItem updateModelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updatePhysicsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuUpdateAllExistingPhysics;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btFmodEnable;
+        private System.Windows.Forms.Button btFmodDisable;
+        private System.Windows.Forms.Label lblFMODStatus;
+        private BrightIdeasSoftware.OLVColumn col2FMODSoundBank;
+        private BrightIdeasSoftware.OLVColumn colFMODSoundBank;
+        private System.Windows.Forms.Button btFMOD;
+        private System.Windows.Forms.Button btFMODConfigure;
+        private System.Windows.Forms.Label lblFMODVersion;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

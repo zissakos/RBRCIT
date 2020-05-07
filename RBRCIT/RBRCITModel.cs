@@ -12,6 +12,17 @@ namespace RBRCIT
     /// </summary>
     public class RBRCITModel
     {
+        const string FILEPATH_RBRCIT_INI = "";
+        const string FILEPATH_CARS_INI = "";
+        const string FILEPATH_AUDIO_CARS_INI = "";
+        const string FILEPATH_CARLIST_INI = "RBRCIT\\carlist\\carlist.ini";
+        const string FILEPATH_AUDIO_FMOD_INI = "AudioFMOD\\AudioFMOD.ini";
+        const string FILEPATH_VERSIONS_INI = "RBRCIT\\versions.ini";
+
+
+
+
+
         //All cars from carList.ini
         public List<Car> AllCars;
 
@@ -37,6 +48,12 @@ namespace RBRCIT
         //Is audio.dat extracted into Audio\ subfolder and non-existent?
         public bool UseAudio;
 
+        //is FMOD generally available, i.e. is Fixup version >= 4 and does subfolder AudioFMOD exist
+        public bool FMODAvailable;
+
+        //is FMOD enabled, i.e. the parameter EnableFMOD in AudioFMOD.ini is set to true?
+        public bool FMODEnabled;
+
         public bool UseExternalUnzipper;
         public string PathToExternalUnzipper;
         public string ExternalUnzipperArguments;
@@ -44,6 +61,7 @@ namespace RBRCIT
         private INIFile carlist_ini;
         private INIFile carlistuser_ini;
         private INIFile rbrcit_ini;
+
         private string[] PhysicsFolders;
         private string[] BackupFiles;
 
@@ -77,9 +95,22 @@ namespace RBRCIT
                 "Audio/Cars/Cars.ini"
             };
 
-            UseAudio = Directory.Exists("Audio") && !File.Exists("audio.dat");
+            UpdateAudio();
+            UpdateFMOD();
 
             SetProxy();
+        }
+
+        public void UpdateAudio()
+        {
+            UseAudio = Directory.Exists("Audio") && !File.Exists("audio.dat");
+        }
+
+        public void UpdateFMOD()
+        {
+            //include ((rbrcit.GetPluginVersionNGP().CompareTo("6.3.758.431") >= 0)  ?
+            FMODAvailable = Directory.Exists("AudioFMOD") && PluginExistsFixUp() && GetPluginVersionFixUp().CompareTo("4.0") >= 0;
+            FMODEnabled = GetFMODStatusEnabled();
         }
 
         private void SetProxy()
@@ -132,11 +163,12 @@ namespace RBRCIT
 
         public void LoadAll()
         {
-            UseAudio = Directory.Exists("Audio") && !File.Exists("audio.dat");
+            UpdateAudio();
             LoadAllCars();
             LoadCurrentCars();
             LoadSavedLists();
-            mainForm.UpdatePlugins();
+            mainForm.UpdatePluginsPanel();
+            mainForm.UpdateFMODPanel();
             mainForm.UpdateApplyButton();
         }
 
@@ -162,6 +194,7 @@ namespace RBRCIT
                 c.trans = carlist_ini.GetParameterValue("trans", section);
                 c.link_physics = carlist_ini.GetParameterValue("link_physics", section);
                 c.link_model = carlist_ini.GetParameterValue("link_model", section);
+                c.link_banks = carlist_ini.GetParameterValue("link_banks", section);
 
                 c.year = carlist_ini.GetParameterValue("year", section);
                 string power = carlist_ini.GetParameterValue("power", section);
@@ -173,6 +206,7 @@ namespace RBRCIT
                 if (c.model_exists) ModelsFound++;
                 c.physics_exists = Directory.Exists("RBRCIT\\physics\\" + c.physics);
                 if (c.physics_exists) PhysicsFound++;
+                c.banks_exist = Directory.Exists("AudioFMOD\\") && Directory.GetFiles("AudioFMOD\\", c.iniFile + "*").Length > 0;
 
                 //are there user settings? if yes set them. Default Engine sound = subaru!
                 c.userSettings.engineSound = "subaru";
@@ -180,6 +214,8 @@ namespace RBRCIT
                 {
                     string sound = carlistuser_ini.GetParameterValue("engineSound", "Car_" + c.nr);
                     if (sound != null) c.userSettings.engineSound = sound;
+                    string FMODSoundBank = carlistuser_ini.GetParameterValue("FMODSoundBank", "Car_" + c.nr);
+                    if (FMODSoundBank != null) c.userSettings.FMODSoundBank = FMODSoundBank;
                     c.userSettings.hideSteeringWheel = carlistuser_ini.GetParameterValueBool("hideSteeringWheel", "Car_" + c.nr);
                     c.userSettings.hideWipers = carlistuser_ini.GetParameterValueBool("hideWipers", "Car_" + c.nr);
                     c.userSettings.hideWindShield = carlistuser_ini.GetParameterValueBool("hideWindShield", "Car_" + c.nr);
@@ -253,6 +289,19 @@ namespace RBRCIT
                 }
             }
 
+            
+            //read current FMOD Sound Banks
+            if (FMODAvailable)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    string FMODSoundBank = IniFileHelper.ReadValue("Car" + i.ToString("00"), "bankName", "AudioFMOD\\AudioFMOD.ini");
+                    Car c = CurrentCarList[i];
+                    c.userSettings.FMODSoundBank = FMODSoundBank;
+                    CurrentCarList[i] = c;
+                }
+            }
+
             DesiredCarList = new List<Car>(CurrentCarList.ToArray());
             mainForm.UpdateCurrentCars();
         }
@@ -302,6 +351,7 @@ namespace RBRCIT
             WriteCarsINI();
             CopyNGPPhysics(replaceSchoolFiles, force);
             WriteAudioCarsINI();
+            WriteAudioFMODINI();
             ApplyUserSettings();
             WriteCarListUserINI();
             PatchEXE();
@@ -421,6 +471,19 @@ namespace RBRCIT
             audiocars_ini.Save();
         }
 
+        private void WriteAudioFMODINI()
+        {
+            if (!FMODAvailable) return;
+            for (int i = 0; i < 8; i++)
+            {
+                if (DesiredCarList[i].userSettings.Equals(CurrentCarList[i].userSettings)) continue;
+                if (DesiredCarList[i].userSettings.FMODSoundBank != null)
+                    if (File.Exists("AudioFMOD\\" + DesiredCarList[i].userSettings.FMODSoundBank + ".bank"))
+                        IniFileHelper.WriteValue("Car" + i.ToString("00"), "bankName", DesiredCarList[i].userSettings.FMODSoundBank, "AudioFMOD\\AudioFMOD.ini");
+            }
+        }
+
+
         private void ApplyUserSettings()
         {
             for (int i = 0; i < 8; i++)
@@ -462,6 +525,7 @@ namespace RBRCIT
             foreach (Car c in AllCars)
             {
                 carListUserINI.SetParameter("engineSound", c.userSettings.engineSound, "Car_" + c.nr);
+                carListUserINI.SetParameter("FMODSoundBank", c.userSettings.FMODSoundBank, "Car_" + c.nr);
                 carListUserINI.SetParameter("hideSteeringWheel", c.userSettings.hideSteeringWheel.ToString(), "Car_" + c.nr);
                 carListUserINI.SetParameter("hideWipers", c.userSettings.hideWipers.ToString(), "Car_" + c.nr);
                 carListUserINI.SetParameter("hideWindShield", c.userSettings.hideWindShield.ToString(), "Car_" + c.nr);
@@ -570,6 +634,17 @@ namespace RBRCIT
             fd.ShowAtCenterParent(mainForm);
         }
 
+        public void DownloadCarSoundBank(Car c)
+        {
+            DownloadJob job = new DownloadJob();
+            job.title = c.manufacturer + " " + c.name;
+            job.URL = c.link_banks;
+            job.path = ".";
+            FormDownload fd = new FormDownload(job, this);
+            fd.FormClosed += FormDownloadClosedAllCars;
+            fd.ShowAtCenterParent(mainForm);
+        }
+
         public void DownloadMissingPhysics()
         {
             List<DownloadJob> jobs = new List<DownloadJob>();
@@ -659,13 +734,67 @@ namespace RBRCIT
         public void DownloadPluginFixUp()
         {
             DownloadJob dj = new DownloadJob();
-            dj.path = "Plugins\\";
             dj.title = "FixUp Plugin";
-            //dj.URL = rbrcit_ini.GetParameterValue("plugin_fixup_url");
-            dj.URL = carlist_ini.GetParameterValue("plugin_fixup_url", "Plugins");
+            dj.path = ".";
+            dj.URL = carlist_ini.GetParameterValue("plugin_fixup4_url", "Plugins");
+
+            //legacy support for FixUp < v4
+            if (dj.URL == null)
+            {
+                dj.URL = carlist_ini.GetParameterValue("plugin_fixup_url", "Plugins");
+                dj.path = "Plugins\\";
+            }
+
             FormDownload fd = new FormDownload(dj, this);
-            fd.FormClosed += FormDownloadClosedPlugin;
+            fd.FormClosed += FormDownloadClosedFixup;
             fd.ShowAtCenterParent(mainForm);
+        }
+
+        public void DownloadAudioFMOD()
+        {
+            DownloadJob dj = new DownloadJob();
+            dj.title = "AudioFMOD";
+            dj.path = ".";
+            dj.URL = GetAudioFMOD_URL();
+            FormDownload fd = new FormDownload(dj, this);
+            fd.FormClosed += FormDownloadClosedAudioFMOD;
+            fd.ShowAtCenterParent(mainForm);
+
+        }
+        public bool GetFMODStatusEnabled()
+        {
+            string value = IniFileHelper.ReadValue("Settings", "enableFMOD", FILEPATH_AUDIO_FMOD_INI, "false");
+            return bool.Parse(value);
+        }
+
+        public void SetFMODEnabled(bool status)
+        {
+            IniFileHelper.WriteValue("Settings", "enableFMOD", status.ToString(), FILEPATH_AUDIO_FMOD_INI);
+            FMODEnabled = status;
+            mainForm.UpdateFMODPanel();
+        }
+
+        public string GetAudioFMODVersion()
+        {
+            string result = IniFileHelper.ReadValue("Versions", "AudioFMOD", FILEPATH_VERSIONS_INI);
+            return result;
+        }
+
+        public bool AudioFMODiniExists()
+        {
+            return File.Exists(FILEPATH_AUDIO_FMOD_INI);
+        }
+
+        public bool AudioFMODExists()
+        {
+            bool result = Directory.Exists("AudioFMOD") && (GetAudioFMODVersion() != "");
+            return result;
+        }
+
+        public string GetAudioFMOD_URL()
+        {
+            string result = IniFileHelper.ReadValue("Misc", "audio_fmod_url", FILEPATH_CARLIST_INI);
+            return result;
         }
 
         private void FormDownloadClosedAllCars(object sender, FormClosedEventArgs e)
@@ -679,12 +808,25 @@ namespace RBRCIT
             ExtractPhysicsRBZ(true);
             HelperFunctions.RemoveReadOnlyFlagInFolder("Physics\\school");
             CopyNGPPhysics(false, true);
-            FormDownloadClosedPlugin(null, null);
+
+            mainForm.UpdatePluginsPanel();
+            mainForm.UpdateFMODPanel();
         }
 
-        private void FormDownloadClosedPlugin(object sender, FormClosedEventArgs e)
+        private void FormDownloadClosedFixup(object sender, FormClosedEventArgs e)
         {
-            mainForm.UpdatePlugins();
+            UpdateFMOD();
+            mainForm.UpdatePluginsPanel();
+            mainForm.UpdateFMODPanel();
+        }
+
+        private void FormDownloadClosedAudioFMOD(object sender, FormClosedEventArgs e)
+        {
+            FormDownload fd = (FormDownload)sender;
+            string version = fd.filename.Replace(".7z", "").Split('-')[1];
+            IniFileHelper.WriteValue("Versions", "AudioFMOD", version, FILEPATH_VERSIONS_INI);
+            UpdateFMOD();
+            mainForm.UpdateFMODPanel();
         }
 
         public void ExtractFile(string path, string outputdir)
@@ -726,7 +868,7 @@ namespace RBRCIT
 
             MessageBox.Show("The file 'audio.dat' has been extracted into the new subfolder 'Audio' and renamed to 'audio.dat.old'. Now you can change engine sounds!");
 
-            UseAudio = Directory.Exists("Audio") && !File.Exists("audio.dat");
+            UpdateAudio();
         }
 
         public void ExtractPhysicsRBZ(bool overwriteSubFolder)
