@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 
 namespace RBRCIT
@@ -219,6 +220,7 @@ namespace RBRCIT
                     c.userSettings.hideSteeringWheel = carlistuser_ini.GetParameterValueBool("hideSteeringWheel", "Car_" + c.nr);
                     c.userSettings.hideWipers = carlistuser_ini.GetParameterValueBool("hideWipers", "Car_" + c.nr);
                     c.userSettings.hideWindShield = carlistuser_ini.GetParameterValueBool("hideWindShield", "Car_" + c.nr);
+                    c.userSettings.mirrorSteeringWheel = carlistuser_ini.GetParameterValueBool("mirrorSteeringWheel", "Car_" + c.nr);
                 }
 
                 AllCars.Add(c);
@@ -384,6 +386,47 @@ namespace RBRCIT
             MessageBox.Show("Backup restored.");
         }
 
+        private static string GetSGCPath(bool mirror, string fileName)
+        {
+            string SGCFileName = fileName + ".sgc";
+            if (mirror)
+            {
+                string mirroredSGCFileName = fileName + ".mirrored.sgc";
+                File.Copy(SGCFileName, mirroredSGCFileName, true);
+                // Search for the section of the file which contains the steering wheel position
+                using (FileStream stream = new FileStream(mirroredSGCFileName, FileMode.Open))
+                {
+                    string needle = "i_steeringwheel::PRS";
+                    int needleIndex = 0;
+                    while (true)
+                    {
+                        int b = stream.ReadByte();
+                        if (b == -1) break; // We're at EOF, failed to mirror the wheel
+                        if (b != needle[needleIndex]) needleIndex = 0;
+                        if (b == needle[needleIndex]) needleIndex++;
+                        if (needleIndex == needle.Length - 1) // We've found the entire needle
+                        {
+                            stream.Position += 42; // We are at the end of the needle, skip to X coordinate of the wheel
+                            long x_position = stream.Position;
+                            // Get the X coordinate as a float, negate it, and write it back
+                            byte[] floatBytes = new byte[4];
+                            stream.Read(floatBytes, 0, 4);
+                            float steering_x = System.BitConverter.ToSingle(floatBytes, 0);
+                            floatBytes = System.BitConverter.GetBytes(steering_x * -1);
+                            stream.Position = x_position;
+                            stream.Write(floatBytes, 0, 4);
+                            break;
+                        }
+                    }
+                }
+                return mirroredSGCFileName;
+            }
+            else
+            {
+                return SGCFileName;
+            }
+        }
+
         private void WriteCarsINI()
         {
             FileInfo fi = new FileInfo("Cars\\cars.ini");
@@ -393,8 +436,9 @@ namespace RBRCIT
             {
                 if (DesiredCarList[i].Equals(CurrentCarList[i])) continue;
                 Car c = DesiredCarList[i];
+                string sgcPath = GetSGCPath(c.userSettings.mirrorSteeringWheel, string.Format("Cars\\{0}\\{1}", c.folder, c.iniFile));
                 string section = "Car0" + i;
-                carsINI.SetParameter("FileName", string.Format("Cars\\{0}\\{1}.sgc", c.folder, c.iniFile), section);
+                carsINI.SetParameter("FileName", sgcPath, section);
                 carsINI.SetParameter("IniFile", string.Format("Cars\\{0}\\{1}.ini", c.folder, c.iniFile), section);
                 carsINI.SetParameter("ShaderFile", string.Format("Cars\\{0}\\{1}_shaders.ini", c.folder, c.iniFile), section);
                 carsINI.SetParameter("ShaderSettings", string.Format("Cars\\{0}\\{1}_shader_settings", c.folder, c.iniFile), section);
@@ -529,6 +573,7 @@ namespace RBRCIT
                 carListUserINI.SetParameter("hideSteeringWheel", c.userSettings.hideSteeringWheel.ToString(), "Car_" + c.nr);
                 carListUserINI.SetParameter("hideWipers", c.userSettings.hideWipers.ToString(), "Car_" + c.nr);
                 carListUserINI.SetParameter("hideWindShield", c.userSettings.hideWindShield.ToString(), "Car_" + c.nr);
+                carListUserINI.SetParameter("mirrorSteeringWheel", c.userSettings.mirrorSteeringWheel.ToString(), "Car_" + c.nr);
             }
             carListUserINI.SaveAs("RBRCIT\\carListUser.ini");
         }

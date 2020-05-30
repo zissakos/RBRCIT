@@ -35,6 +35,7 @@ namespace RBRCIT
         public bool hideSteeringWheel;
         public bool hideWipers;
         public bool hideWindShield;
+        public bool mirrorSteeringWheel;
     }
 
 
