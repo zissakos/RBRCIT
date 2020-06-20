@@ -764,6 +764,32 @@ namespace RBRCIT
             rbrcit.DownloadAudioFMOD();
         }
 
+        private void UpdateRBRCITToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rbrcit.UpdateRBRCIT();
+        }
+
+        private void RemoveSoundBankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Car c = (Car) olvInstalledCars.SelectedObject;
+
+            c.userSettings.FMODSoundBank = "";
+
+            rbrcit.DesiredCarList[olvInstalledCars.SelectedIndex] = c;
+            olvInstalledCars.SetObjects(rbrcit.DesiredCarList);
+            olvInstalledCars.Refresh();
+            UpdateApplyButton();
+
+        }
+
+        private void OlvInstalledCars_CellRightClick(object sender, CellRightClickEventArgs e)
+        {
+            if (e.Column == col2FMODSoundBank)
+            {
+                e.MenuStrip = contextMenuFMODSoundBank;
+            }
+        }
+
         private void MenuBackup_Click(object sender, EventArgs e)
         {
             rbrcit.Backup();

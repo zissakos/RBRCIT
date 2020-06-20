@@ -16,6 +16,7 @@ namespace RBRCIT
         const string FILEPATH_CARS_INI = "";
         const string FILEPATH_AUDIO_CARS_INI = "";
         const string FILEPATH_CARLIST_INI = "RBRCIT\\carlist\\carlist.ini";
+        const string FILEPATH_CARLIST_INI_TEMP = "RBRCIT\\carlist\\carlist_new.ini";
         const string FILEPATH_AUDIO_FMOD_INI = "AudioFMOD\\AudioFMOD.ini";
         const string FILEPATH_VERSIONS_INI = "RBRCIT\\versions.ini";
 
@@ -174,7 +175,14 @@ namespace RBRCIT
 
         public void LoadAllCars()
         {
-            carlist_ini = new INIFile("RBRCIT\\carlist\\carList.ini");
+            if (!File.Exists(FILEPATH_CARLIST_INI))
+            {
+                MessageBox.Show("carlist.ini cannot be found. RBRCIT will close now.");
+                Application.Exit();
+                System.Environment.Exit(1);
+            }
+
+            carlist_ini = new INIFile(FILEPATH_CARLIST_INI);
             if (File.Exists("RBRCIT\\carListUser.ini")) carlistuser_ini = new INIFile("RBRCIT\\carListUser.ini");
             AllCars.Clear();
             ModelsFound = 0;
@@ -478,7 +486,7 @@ namespace RBRCIT
             {
                 if (DesiredCarList[i].userSettings.Equals(CurrentCarList[i].userSettings)) continue;
                 if (DesiredCarList[i].userSettings.FMODSoundBank != null)
-                    if (File.Exists("AudioFMOD\\" + DesiredCarList[i].userSettings.FMODSoundBank + ".bank"))
+                    //if (File.Exists("AudioFMOD\\" + DesiredCarList[i].userSettings.FMODSoundBank + ".bank"))
                         IniFileHelper.WriteValue("Car" + i.ToString("00"), "bankName", DesiredCarList[i].userSettings.FMODSoundBank, "AudioFMOD\\AudioFMOD.ini");
             }
         }
@@ -600,8 +608,28 @@ namespace RBRCIT
         {
             using (var client = new WebClient())
             {
-                client.DownloadFile(rbrcit_ini.GetParameterValue("carlist_ini_url", "RBRCIT"), "RBRCIT\\carlist\\carList.ini");
+                client.DownloadFileCompleted += Client_DownloadFileCompleted;
+
+                if (File.Exists(FILEPATH_CARLIST_INI_TEMP)) File.Delete(FILEPATH_CARLIST_INI_TEMP);
+                string url = rbrcit_ini.GetParameterValue("carlist_ini_url", "RBRCIT");
+                Uri uri = new Uri(url);
+                try
+                {
+                    client.DownloadFileAsync(uri, FILEPATH_CARLIST_INI_TEMP);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("URL: " + url + "\n\nFile download not successful:\n" + e.Message);
+                    if (File.Exists(FILEPATH_CARLIST_INI_TEMP)) File.Delete(FILEPATH_CARLIST_INI_TEMP);
+                    return;
+                }
             }
+        }
+
+        private void Client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            if (File.Exists(FILEPATH_CARLIST_INI)) File.Delete(FILEPATH_CARLIST_INI);
+            File.Move(FILEPATH_CARLIST_INI_TEMP, FILEPATH_CARLIST_INI);
             LoadAll();
         }
 
@@ -921,6 +949,46 @@ namespace RBRCIT
         public string GetRBRCITVersion()
         {
             return Application.ProductVersion.Substring(0, Application.ProductVersion.Length - 2);
+        }
+
+        public void UpdateRBRCIT()
+        {
+            //prepare update
+            string runningfilename = "RBRCIT.exe";
+            string backupfilename = "RBRCIT.bak";
+            if (File.Exists(backupfilename)) File.Delete(backupfilename);
+            File.Move(runningfilename, backupfilename);
+
+            //start download&extract
+            DownloadRBRCIT();
+        }
+
+        void DownloadRBRCIT()
+        {
+            DownloadJob dj = new DownloadJob();
+            dj.path = ".";
+            dj.title = "RBRCIT";
+            //dj.URL = rbrcit_ini.GetParameterValue("plugin_physics_url");
+            dj.URL = IniFileHelper.ReadValue("Misc", "rbrcit_url", FILEPATH_CARLIST_INI);
+            FormDownload fd = new FormDownload(dj, this);
+            fd.FormClosed += FormDownloadClosedRBRCIT;
+            fd.ShowAtCenterParent(mainForm);
+        }
+
+        private void FormDownloadClosedRBRCIT(object sender, FormClosedEventArgs e)
+        {
+            string runningfilename = "RBRCIT.exe";
+            string backupfilename = "RBRCIT.bak";
+
+            if (File.Exists(runningfilename))  //if download&extract has been sucessful
+            {
+                Application.Restart();
+            }
+            else
+            {
+                File.Move(backupfilename, runningfilename);  //revert back to make sure an exe exists
+            }
+
         }
     }
 }

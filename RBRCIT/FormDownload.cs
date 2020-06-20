@@ -49,8 +49,6 @@ namespace RBRCIT
             if (jobQueue.Count > 0)
             {
                 DownloadJob job = jobQueue[jobQueue.Count - 1];
-                //if (downloadPhysics) filename = "RBRCIT\\physics\\" + c.physics + ".zip";
-                //else filename = "Cars\\" + c.folder + ".7z";
                 currentJob++;
                 label1.Text = job.title + " (" + currentJob + " of " + totalJobs + " Files)";
                 label3.Text = job.URL.Replace("%20", " ");
@@ -68,6 +66,13 @@ namespace RBRCIT
             }
         }
 
+        string getFileNameFromURL(string url)
+        {
+            string[] chunks = url.Split('/');
+            string result = chunks[chunks.Length - 1];  //return the last part (after the last '/')
+            return result;
+        }
+
         private void Client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
             if (e.Error != null)
@@ -78,10 +83,12 @@ namespace RBRCIT
             }
 
             DownloadJob job = jobQueue[jobQueue.Count - 1];
-
+            /*
             WebClient wc = (WebClient)e.UserState;
             string header_contentDisposition = wc.ResponseHeaders["content-disposition"];
             filename = job.path + new ContentDisposition(header_contentDisposition).FileName;
+            */
+            filename = getFileNameFromURL(job.URL);
 
             FileStream fs = new FileStream(filename, FileMode.Create);
             fs.Write(e.Result, 0, e.Result.Length);
