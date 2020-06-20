@@ -53,8 +53,20 @@ Check the "Tools" and "Downloads" menus for
 
 Version History
 ---------------------------------------------------------------------
+1.1.1 2020-06-20
+	* Allow 0/1 in addition to true/false for bool Parameters in INI files
+	* fixed: download status of sound Banks for certain cars would not switch to "found" after download
+
+
 1.1.0 2020-04-25
 	* Added support for FMOD Sound Banks
+		- enable/disable FMOD Sound Support
+		- download SoundBanks per car
+		- assign them in a new column in the table "installed Cars"
+		- remove them in new context menu of the cell in the table "installed Cars"
+    * Added self update feature: Main Manu "Download" -> "Update RBRCIT"
+	  will download the latest version of RBRCIT and restart
+    * fixed: handle failed carlist.ini download gracefully (revert to last version)
 
 1.0.6 2019-04-28
 	* For unzipping downloaded files an external program (like 7zip) can now be used. Much faster and more reliable.
