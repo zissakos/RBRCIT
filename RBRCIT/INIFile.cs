@@ -136,6 +136,8 @@ namespace RBRCIT
         {
             string value = GetParameterValue(ParameterName, SectionName);
             if (value == null) return false;
+            if (value == "0") return false;
+            if (value == "1") return true;
             return bool.Parse(value);
         }
 

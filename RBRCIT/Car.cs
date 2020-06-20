@@ -24,7 +24,8 @@ namespace RBRCIT
         public bool model_exists;
         public bool physics_exists;
         public bool banks_exist;
-        
+        public string banks;  //base filename for FMOD SoundBanks
+
         public CarUserSettings userSettings;
     }
 

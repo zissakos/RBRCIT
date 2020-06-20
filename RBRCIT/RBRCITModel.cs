@@ -214,10 +214,13 @@ namespace RBRCIT
                 if (c.model_exists) ModelsFound++;
                 c.physics_exists = Directory.Exists("RBRCIT\\physics\\" + c.physics);
                 if (c.physics_exists) PhysicsFound++;
-                c.banks_exist = Directory.Exists("AudioFMOD\\") && Directory.GetFiles("AudioFMOD\\", c.iniFile + "*").Length > 0;
+
+                c.banks = carlist_ini.GetParameterValue("banks", section);
+                if (c.banks!=null && c.banks.Contains(",")) c.banks = c.banks.Substring(0, c.banks.IndexOf(','));
+                c.banks_exist = (c.banks != null) && Directory.Exists("AudioFMOD\\") && Directory.GetFiles("AudioFMOD\\", c.banks + "*").Length > 0;
 
                 //are there user settings? if yes set them. Default Engine sound = subaru!
-                c.userSettings.engineSound = "subaru";
+                    c.userSettings.engineSound = "subaru";
                 if (carlistuser_ini != null)
                 {
                     string sound = carlistuser_ini.GetParameterValue("engineSound", "Car_" + c.nr);
@@ -792,6 +795,8 @@ namespace RBRCIT
         public bool GetFMODStatusEnabled()
         {
             string value = IniFileHelper.ReadValue("Settings", "enableFMOD", FILEPATH_AUDIO_FMOD_INI, "false");
+            if (value == "0") return false;
+            if (value == "1") return true;
             return bool.Parse(value);
         }
 
