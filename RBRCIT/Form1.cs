@@ -304,16 +304,16 @@ namespace RBRCIT
             {
                 if ((bool)e.CellValue)
                 {
+                    e.SubItem.Text = "found";
                     e.SubItem.Font = BoldFont;
                     e.SubItem.ForeColor = Green;
-                    e.SubItem.Text = "found";
                     e.SubItem.Url = null;
                 }
                 else
                 {
-                    e.SubItem.Text = "download";
                     if (c.link_banks != null)
                     {
+                        e.SubItem.Text = "download";
                         e.SubItem.Url = c.link_banks;
                     }
                     else
@@ -741,6 +741,20 @@ namespace RBRCIT
             rbrcit.DownloadCarPhysics(c);
         }
 
+
+        private void ContextMenuStripCar_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Car c = (Car)contextMenuStripCar.Tag;
+            updateSoundBankToolStripMenuItem.Enabled = (c.link_banks != null);
+        }
+
+
+        private void UpdateSoundBankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Car c = (Car)contextMenuStripCar.Tag;
+            rbrcit.DownloadCarSoundBank(c);
+        }
+
         private void BtFmodEnable_Click(object sender, EventArgs e)
         {
             rbrcit.SetFMODEnabled(true);
@@ -789,6 +803,7 @@ namespace RBRCIT
                 e.MenuStrip = contextMenuFMODSoundBank;
             }
         }
+
 
         private void MenuBackup_Click(object sender, EventArgs e)
         {
