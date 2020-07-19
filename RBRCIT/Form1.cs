@@ -713,6 +713,20 @@ namespace RBRCIT
             rbrcit.UpdateAllExistingPhysics();
         }
 
+
+
+        private void MenuDownloadMissingSoundBanks_Click(object sender, EventArgs e)
+        {
+            rbrcit.DownloadMissingSoundBanks();
+        }
+
+        private void UpdateExistingSoundBanksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rbrcit.UpdateAllExistingSoundBanks();
+        }
+
+
+
         private void MenuExtractAudioDat_Click(object sender, EventArgs e)
         {
             rbrcit.ExtractAudioDAT();
@@ -803,6 +817,7 @@ namespace RBRCIT
                 e.MenuStrip = contextMenuFMODSoundBank;
             }
         }
+
 
 
         private void MenuBackup_Click(object sender, EventArgs e)

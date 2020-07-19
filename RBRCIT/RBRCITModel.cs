@@ -724,6 +724,57 @@ namespace RBRCIT
             fd.ShowAtCenterParent(mainForm);
         }
 
+
+        public void DownloadMissingSoundBanks()
+        {
+            List<DownloadJob> jobs = new List<DownloadJob>();
+            foreach (Car c in AllCars)
+            {
+                if (!c.banks_exist && c.link_banks!=null)
+                {
+                    DownloadJob job;
+                    job.title = c.manufacturer + " " + c.name;
+                    job.URL = c.link_banks;
+                    job.path = ".";
+                    jobs.Add(job);
+                }
+            }
+            if (jobs.Count == 0)
+            {
+                MessageBox.Show("No missing SoundBanks. All available SoundBanks are there.");
+                return;
+            }
+            FormDownload fd = new FormDownload(jobs, this);
+            fd.FormClosed += FormDownloadClosedAllCars;
+            fd.ShowAtCenterParent(mainForm);
+        }
+
+
+        public void UpdateAllExistingSoundBanks()
+        {
+            List<DownloadJob> jobs = new List<DownloadJob>();
+            foreach (Car c in AllCars)
+            {
+                if (c.banks_exist)
+                {
+                    DownloadJob job;
+                    job.title = c.manufacturer + " " + c.name;
+                    job.URL = c.link_banks;
+                    job.path = ".";
+                    jobs.Add(job);
+                }
+            }
+            if (jobs.Count == 0)
+            {
+                MessageBox.Show("No existing SoundBanks. Download SoundBanks first.");
+                return;
+            }
+            FormDownload fd = new FormDownload(jobs, this);
+            fd.FormClosed += FormDownloadClosedAllCars;
+            fd.ShowAtCenterParent(mainForm);
+        }
+
+
         public bool PluginExistsNGP()
         {
             string pluginFileName = "Plugins\\PhysicsNG.dll";

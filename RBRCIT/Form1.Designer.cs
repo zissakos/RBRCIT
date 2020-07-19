@@ -52,9 +52,13 @@
             this.MenuRestore = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuUpdateCarList = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuDownloadMissingPhysics = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuUpdateAllExistingPhysics = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.downloadMissingSoundBanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateExistingSoundBanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.updateRBRCITToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -293,9 +297,13 @@
             // 
             this.downloadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuUpdateCarList,
+            this.toolStripSeparator6,
             this.MenuDownloadMissingPhysics,
             this.MenuUpdateAllExistingPhysics,
             this.toolStripSeparator3,
+            this.downloadMissingSoundBanksToolStripMenuItem,
+            this.updateExistingSoundBanksToolStripMenuItem,
+            this.toolStripSeparator7,
             this.updateRBRCITToolStripMenuItem});
             this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
             this.downloadToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
@@ -304,33 +312,57 @@
             // MenuUpdateCarList
             // 
             this.MenuUpdateCarList.Name = "MenuUpdateCarList";
-            this.MenuUpdateCarList.Size = new System.Drawing.Size(215, 22);
+            this.MenuUpdateCarList.Size = new System.Drawing.Size(240, 22);
             this.MenuUpdateCarList.Text = "Update carList.ini";
             this.MenuUpdateCarList.Click += new System.EventHandler(this.MenuUpdateCarList_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(237, 6);
             // 
             // MenuDownloadMissingPhysics
             // 
             this.MenuDownloadMissingPhysics.Name = "MenuDownloadMissingPhysics";
-            this.MenuDownloadMissingPhysics.Size = new System.Drawing.Size(215, 22);
+            this.MenuDownloadMissingPhysics.Size = new System.Drawing.Size(240, 22);
             this.MenuDownloadMissingPhysics.Text = "Download Missing Physics";
             this.MenuDownloadMissingPhysics.Click += new System.EventHandler(this.MenuDownloadMissingPhysics_Click);
             // 
             // MenuUpdateAllExistingPhysics
             // 
             this.MenuUpdateAllExistingPhysics.Name = "MenuUpdateAllExistingPhysics";
-            this.MenuUpdateAllExistingPhysics.Size = new System.Drawing.Size(215, 22);
+            this.MenuUpdateAllExistingPhysics.Size = new System.Drawing.Size(240, 22);
             this.MenuUpdateAllExistingPhysics.Text = "Update All Existing Physics";
             this.MenuUpdateAllExistingPhysics.Click += new System.EventHandler(this.MenuUpdateAllExistingPhysics_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(212, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(237, 6);
+            // 
+            // downloadMissingSoundBanksToolStripMenuItem
+            // 
+            this.downloadMissingSoundBanksToolStripMenuItem.Name = "downloadMissingSoundBanksToolStripMenuItem";
+            this.downloadMissingSoundBanksToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.downloadMissingSoundBanksToolStripMenuItem.Text = "Download Missing SoundBanks";
+            this.downloadMissingSoundBanksToolStripMenuItem.Click += new System.EventHandler(this.MenuDownloadMissingSoundBanks_Click);
+            // 
+            // updateExistingSoundBanksToolStripMenuItem
+            // 
+            this.updateExistingSoundBanksToolStripMenuItem.Name = "updateExistingSoundBanksToolStripMenuItem";
+            this.updateExistingSoundBanksToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.updateExistingSoundBanksToolStripMenuItem.Text = "Update Existing SoundBanks";
+            this.updateExistingSoundBanksToolStripMenuItem.Click += new System.EventHandler(this.UpdateExistingSoundBanksToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(237, 6);
             // 
             // updateRBRCITToolStripMenuItem
             // 
             this.updateRBRCITToolStripMenuItem.Name = "updateRBRCITToolStripMenuItem";
-            this.updateRBRCITToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.updateRBRCITToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.updateRBRCITToolStripMenuItem.Text = "Update RBRCIT";
             this.updateRBRCITToolStripMenuItem.Click += new System.EventHandler(this.UpdateRBRCITToolStripMenuItem_Click);
             // 
@@ -470,27 +502,27 @@
             this.updatePhysicsToolStripMenuItem,
             this.updateSoundBankToolStripMenuItem});
             this.contextMenuStripCar.Name = "contextMenuStrip2";
-            this.contextMenuStripCar.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStripCar.Size = new System.Drawing.Size(176, 70);
             this.contextMenuStripCar.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripCar_Opening);
             // 
             // updateModelToolStripMenuItem
             // 
             this.updateModelToolStripMenuItem.Name = "updateModelToolStripMenuItem";
-            this.updateModelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateModelToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.updateModelToolStripMenuItem.Text = "Update Model";
             this.updateModelToolStripMenuItem.Click += new System.EventHandler(this.updateModelToolStripMenuItem_Click);
             // 
             // updatePhysicsToolStripMenuItem
             // 
             this.updatePhysicsToolStripMenuItem.Name = "updatePhysicsToolStripMenuItem";
-            this.updatePhysicsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updatePhysicsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.updatePhysicsToolStripMenuItem.Text = "Update Physics";
             this.updatePhysicsToolStripMenuItem.Click += new System.EventHandler(this.updatePhysicsToolStripMenuItem_Click);
             // 
             // updateSoundBankToolStripMenuItem
             // 
             this.updateSoundBankToolStripMenuItem.Name = "updateSoundBankToolStripMenuItem";
-            this.updateSoundBankToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateSoundBankToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.updateSoundBankToolStripMenuItem.Text = "Update SoundBank";
             this.updateSoundBankToolStripMenuItem.Click += new System.EventHandler(this.UpdateSoundBankToolStripMenuItem_Click);
             // 
@@ -542,7 +574,7 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
             this.mySplitContainer1.Panel2MinSize = 650;
             this.mySplitContainer1.Size = new System.Drawing.Size(1284, 660);
-            this.mySplitContainer1.SplitterDistance = 530;
+            this.mySplitContainer1.SplitterDistance = 522;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -600,7 +632,7 @@
             this.olvAllCars.ShowCommandMenuOnRightClick = true;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(512, 622);
+            this.olvAllCars.Size = new System.Drawing.Size(504, 622);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -1341,6 +1373,10 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuFMODSoundBank;
         private System.Windows.Forms.ToolStripMenuItem removeSoundBankToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateSoundBankToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem downloadMissingSoundBanksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateExistingSoundBanksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }
 
