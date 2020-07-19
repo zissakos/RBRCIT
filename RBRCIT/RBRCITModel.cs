@@ -252,6 +252,7 @@ namespace RBRCIT
             INIFile CarsINI = new INIFile(pathToCarsINI);
             foreach (string section in CarsINI.GetSections())
             {
+
                 string CarName = CarsINI.GetParameterValue("CarName", section);
                 Car c;
                 if (CarName == null)
@@ -1009,6 +1010,13 @@ namespace RBRCIT
 
         public void UpdateRBRCIT()
         {
+            string url = IniFileHelper.ReadValue("Misc", "rbrcit_url", FILEPATH_CARLIST_INI);
+            if (String.IsNullOrEmpty(url))
+            {
+                MessageBox.Show("There is no RBRCIT Download URL in carList.ini (Misc section).\nPlease update carList.ini first.");
+                return;
+            }
+
             //prepare update
             string runningfilename = "RBRCIT.exe";
             string backupfilename = "RBRCIT.bak";
