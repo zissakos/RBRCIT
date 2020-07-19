@@ -252,7 +252,7 @@ namespace RBRCIT
             INIFile CarsINI = new INIFile(pathToCarsINI);
             foreach (string section in CarsINI.GetSections())
             {
-
+                if (!section.StartsWith("Car")) continue;
                 string CarName = CarsINI.GetParameterValue("CarName", section);
                 Car c;
                 if (CarName == null)
