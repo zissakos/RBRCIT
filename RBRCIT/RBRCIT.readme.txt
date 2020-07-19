@@ -53,10 +53,15 @@ Check the "Tools" and "Downloads" menus for
 
 Version History
 ---------------------------------------------------------------------
+1.2.0 2020-07-19
+	* added "Update SoundBank" to car context menu
+	* added "Download Missing SoundBanks" and "Update all existing SoundBanks" to Main Menu
+	* fixed: make sure there is a RBRCIT download URL before attempting to download&update RBRCIT
+	* fixed: don't crash if cars.ini contains a section other than CarXX
+
 1.1.1 2020-06-20
 	* Allow 0/1 in addition to true/false for bool Parameters in INI files
 	* fixed: download status of sound Banks for certain cars would not switch to "found" after download
-
 
 1.1.0 2020-04-25
 	* Added support for FMOD Sound Banks

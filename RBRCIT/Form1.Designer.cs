@@ -574,7 +574,7 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
             this.mySplitContainer1.Panel2MinSize = 650;
             this.mySplitContainer1.Size = new System.Drawing.Size(1284, 660);
-            this.mySplitContainer1.SplitterDistance = 522;
+            this.mySplitContainer1.SplitterDistance = 518;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -632,7 +632,7 @@
             this.olvAllCars.ShowCommandMenuOnRightClick = true;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(504, 622);
+            this.olvAllCars.Size = new System.Drawing.Size(500, 622);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -754,7 +754,7 @@
             this.groupBox2.Controls.Add(this.lblFMODStatus);
             this.groupBox2.Location = new System.Drawing.Point(18, 464);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(708, 100);
+            this.groupBox2.Size = new System.Drawing.Size(728, 100);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "FMOD Sound System";
@@ -763,7 +763,7 @@
             // 
             this.btFMOD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btFMOD.Enabled = false;
-            this.btFMOD.Location = new System.Drawing.Point(617, 58);
+            this.btFMOD.Location = new System.Drawing.Point(637, 58);
             this.btFMOD.Name = "btFMOD";
             this.btFMOD.Size = new System.Drawing.Size(80, 23);
             this.btFMOD.TabIndex = 2;
@@ -783,7 +783,7 @@
             // 
             this.btFMODConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btFMODConfigure.Enabled = false;
-            this.btFMODConfigure.Location = new System.Drawing.Point(617, 26);
+            this.btFMODConfigure.Location = new System.Drawing.Point(637, 26);
             this.btFMODConfigure.Name = "btFMODConfigure";
             this.btFMODConfigure.Size = new System.Drawing.Size(80, 23);
             this.btFMODConfigure.TabIndex = 2;
@@ -806,7 +806,7 @@
             // 
             this.btFmodEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btFmodEnable.Enabled = false;
-            this.btFmodEnable.Location = new System.Drawing.Point(444, 26);
+            this.btFmodEnable.Location = new System.Drawing.Point(464, 26);
             this.btFmodEnable.Name = "btFmodEnable";
             this.btFmodEnable.Size = new System.Drawing.Size(80, 23);
             this.btFmodEnable.TabIndex = 2;
@@ -818,7 +818,7 @@
             // 
             this.btFmodDisable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btFmodDisable.Enabled = false;
-            this.btFmodDisable.Location = new System.Drawing.Point(530, 26);
+            this.btFmodDisable.Location = new System.Drawing.Point(550, 26);
             this.btFmodDisable.Name = "btFmodDisable";
             this.btFmodDisable.Size = new System.Drawing.Size(80, 23);
             this.btFmodDisable.TabIndex = 2;
@@ -957,7 +957,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(18, 360);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(707, 94);
+            this.groupBox1.Size = new System.Drawing.Size(728, 94);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Plugins";
@@ -965,7 +965,7 @@
             // btFixupConfigure
             // 
             this.btFixupConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixupConfigure.Location = new System.Drawing.Point(616, 59);
+            this.btFixupConfigure.Location = new System.Drawing.Point(637, 59);
             this.btFixupConfigure.Name = "btFixupConfigure";
             this.btFixupConfigure.Size = new System.Drawing.Size(80, 23);
             this.btFixupConfigure.TabIndex = 3;
@@ -976,7 +976,7 @@
             // btFixup
             // 
             this.btFixup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixup.Location = new System.Drawing.Point(529, 59);
+            this.btFixup.Location = new System.Drawing.Point(550, 59);
             this.btFixup.Name = "btFixup";
             this.btFixup.Size = new System.Drawing.Size(80, 23);
             this.btFixup.TabIndex = 3;
@@ -987,7 +987,7 @@
             // btNGPConfigure
             // 
             this.btNGPConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNGPConfigure.Location = new System.Drawing.Point(616, 28);
+            this.btNGPConfigure.Location = new System.Drawing.Point(637, 28);
             this.btNGPConfigure.Name = "btNGPConfigure";
             this.btNGPConfigure.Size = new System.Drawing.Size(80, 23);
             this.btNGPConfigure.TabIndex = 2;
@@ -998,7 +998,7 @@
             // btNGP
             // 
             this.btNGP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNGP.Location = new System.Drawing.Point(529, 28);
+            this.btNGP.Location = new System.Drawing.Point(550, 28);
             this.btNGP.Name = "btNGP";
             this.btNGP.Size = new System.Drawing.Size(80, 23);
             this.btNGP.TabIndex = 2;
@@ -1115,7 +1115,7 @@
             this.olvInstalledCars.RowHeight = 30;
             this.olvInstalledCars.ShowGroups = false;
             this.olvInstalledCars.ShowImagesOnSubItems = true;
-            this.olvInstalledCars.Size = new System.Drawing.Size(708, 282);
+            this.olvInstalledCars.Size = new System.Drawing.Size(728, 282);
             this.olvInstalledCars.TabIndex = 1;
             this.olvInstalledCars.UnfocusedSelectedBackColor = System.Drawing.SystemColors.Highlight;
             this.olvInstalledCars.UnfocusedSelectedForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1208,7 +1208,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(635, 610);
+            this.button1.Location = new System.Drawing.Point(666, 610);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 37);
             this.button1.TabIndex = 3;
@@ -1219,7 +1219,7 @@
             // btApply
             // 
             this.btApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btApply.Location = new System.Drawing.Point(548, 610);
+            this.btApply.Location = new System.Drawing.Point(579, 610);
             this.btApply.Name = "btApply";
             this.btApply.Size = new System.Drawing.Size(80, 37);
             this.btApply.TabIndex = 3;
