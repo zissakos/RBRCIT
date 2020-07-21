@@ -55,7 +55,8 @@ namespace RBRCIT
             cbHideSteeringWheel.Checked = CurrentCar.userSettings.hideSteeringWheel;
             cbHideWipers.Checked = CurrentCar.userSettings.hideWipers;
             cbHideWindShield.Checked = CurrentCar.userSettings.hideWindShield;
-            
+            cbMirrorSteeringWheel.Checked = CurrentCar.userSettings.mirrorSteeringWheel;
+
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -72,6 +73,7 @@ namespace RBRCIT
             CurrentCar.userSettings.hideSteeringWheel = cbHideSteeringWheel.Checked;
             CurrentCar.userSettings.hideWipers = cbHideWipers.Checked;
             CurrentCar.userSettings.hideWindShield = cbHideWindShield.Checked;
+            CurrentCar.userSettings.mirrorSteeringWheel = cbMirrorSteeringWheel.Checked;
             DialogResult = DialogResult.OK;
             Close();
         }
