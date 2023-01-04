@@ -658,6 +658,7 @@ namespace RBRCIT
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message + "\n\nInner Exc:\n" +  e.InnerException.Message)
             }
         }
         private void btNGPDownload_Click(object sender, EventArgs e)
