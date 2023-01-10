@@ -53,13 +53,9 @@ namespace RBRCIT
             LoadWindowState();
 
             col2Sound.IsVisible = rbrcit.UseAudio;
-            
-            
             col2FMODSoundBank.IsVisible = rbrcit.FMODAvailable;
             colFMODSoundBank.IsVisible = rbrcit.FMODAvailable;
             olvInstalledCars.RebuildColumns();
-            
-
 
             //this is for sorting in ungrouped state. When grouped, see event handler olvAllCars_BeforeCreatingGroups
             //make sure it is being sorted by Manufacturer and Name additionally
@@ -124,6 +120,14 @@ namespace RBRCIT
 
         public void UpdatePluginsPanel()
         {
+            string oldpluginFileName = "Plugins\\PhysicsNG.dll";
+            string newpluginFileName = "Plugins\\NGP.dll";
+
+            if (File.Exists(newpluginFileName))
+            {
+                rbrcit.RemoveOldPlugins();
+            }
+
             string version_ngp = "";
             string version_fixup = "";
 
@@ -156,11 +160,17 @@ namespace RBRCIT
                 lblFixUpDate.Text = "";
                 btFixup.Text = "Download";
                 btFixupConfigure.Enabled = false;
+                if (File.Exists(newpluginFileName))
+                {
+                    lblFixup.Text = "(now included in NGP plugin)";
+                    btFixup.Enabled = false;
+                }
+
             }
             
             //enable plugin buttons (in any case)
             btNGP.Enabled = true;
-            btFixup.Enabled = true;
+            //btFixup.Enabled = true;
         }
 
         public void UpdateFMODPanel()
@@ -200,7 +210,7 @@ namespace RBRCIT
             }
             else
             {
-                lblFMODStatus.Text = "Not Available. Requires NGP version 6.3.758.431 and FixUp version 4.0";
+                lblFMODStatus.Text = "Not Available. Requires NGP 7.1";
                 lblFMODVersion.Text = "";
                 btFMOD.Text = "Download";
             }
@@ -540,6 +550,7 @@ namespace RBRCIT
                     c.userSettings.FMODSoundBank = fi.Name.Replace(fi.Extension, "");
                     rbrcit.DesiredCarList[e.RowIndex] = c;
                     olvInstalledCars.SetObjects(rbrcit.DesiredCarList);
+                    olvInstalledCars.SelectedIndex = e.RowIndex;
                     UpdateApplyButton();
                 }
             }
@@ -658,7 +669,7 @@ namespace RBRCIT
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + "\n\nInner Exc:\n" +  e.InnerException.Message)
+                MessageBox.Show(e.Message + "\n\nInner Exc:\n" + e.InnerException.Message);
             }
         }
         private void btNGPDownload_Click(object sender, EventArgs e)

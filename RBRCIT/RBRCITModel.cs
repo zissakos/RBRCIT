@@ -109,8 +109,8 @@ namespace RBRCIT
 
         public void UpdateFMOD()
         {
-            //include ((rbrcit.GetPluginVersionNGP().CompareTo("6.3.758.431") >= 0)  ?
-            FMODAvailable = Directory.Exists("AudioFMOD") && PluginExistsFixUp() && GetPluginVersionFixUp().CompareTo("4.0") >= 0;
+            //FMODAvailable = Directory.Exists("AudioFMOD") && PluginExistsFixUp() && GetPluginVersionFixUp().CompareTo("4.0") >= 0;
+            FMODAvailable = Directory.Exists("AudioFMOD");
             FMODEnabled = GetFMODStatusEnabled();
         }
 
@@ -778,15 +778,23 @@ namespace RBRCIT
 
         public bool PluginExistsNGP()
         {
-            string pluginFileName = "Plugins\\PhysicsNG.dll";
-            return (File.Exists(pluginFileName));
+            string oldpluginFileName = "Plugins\\PhysicsNG.dll";
+            string newpluginFileName = "Plugins\\NGP.dll";
+            return (File.Exists(oldpluginFileName) || File.Exists(newpluginFileName));
         }
 
         public string GetPluginVersionNGP()
         {
-            string pluginFileName = "Plugins\\PhysicsNG.dll";
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(pluginFileName);
-            return fvi.ProductVersion;
+            string oldpluginFileName = "Plugins\\PhysicsNG.dll";
+            string newpluginFileName = "Plugins\\NGP.dll";
+            FileVersionInfo fvi = null;
+            if (File.Exists(oldpluginFileName))
+                fvi = FileVersionInfo.GetVersionInfo(oldpluginFileName);
+            if (File.Exists(newpluginFileName))
+                fvi = FileVersionInfo.GetVersionInfo(newpluginFileName);
+
+            if (fvi != null) return fvi.ProductVersion;
+            else return "0";
         }
 
         public void DownloadPluginNGP()
@@ -894,8 +902,22 @@ namespace RBRCIT
             HelperFunctions.RemoveReadOnlyFlagInFolder("Physics\\school");
             CopyNGPPhysics(false, true);
 
+
+
             mainForm.UpdatePluginsPanel();
             mainForm.UpdateFMODPanel();
+        }
+
+        public void RemoveOldPlugins()
+        {
+            string backupfolder = "Plugins\\backup";
+            if (Directory.Exists(backupfolder)) Directory.Delete(backupfolder, true);
+            Directory.CreateDirectory(backupfolder);
+
+            string oldNGP = "Plugins\\PhysicsNG.dll";
+            string oldFixup = "Plugins\\FixUp.dll";
+            if (File.Exists(oldNGP)) File.Move(oldNGP, "Plugins\\backup\\PhysicsNG.dll");
+            if (File.Exists(oldFixup)) File.Move(oldFixup, "Plugins\\backup\\FixUp.dll");
         }
 
         private void FormDownloadClosedFixup(object sender, FormClosedEventArgs e)
@@ -1032,7 +1054,6 @@ namespace RBRCIT
             DownloadJob dj = new DownloadJob();
             dj.path = ".";
             dj.title = "RBRCIT";
-            //dj.URL = rbrcit_ini.GetParameterValue("plugin_physics_url");
             dj.URL = IniFileHelper.ReadValue("Misc", "rbrcit_url", FILEPATH_CARLIST_INI);
             FormDownload fd = new FormDownload(dj, this);
             fd.FormClosed += FormDownloadClosedRBRCIT;
