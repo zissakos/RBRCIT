@@ -19,7 +19,9 @@ namespace RBRCIT
             Application.SetCompatibleTextRenderingDefault(false);
 
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
-            
+
+            //Application.Run(new Form1());
+
             try
             {
                 Form1 f = new Form1();
