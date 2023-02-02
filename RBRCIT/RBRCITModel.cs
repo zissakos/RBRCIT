@@ -49,7 +49,7 @@ namespace RBRCIT
         //Is audio.dat extracted into Audio\ subfolder and non-existent?
         public bool UseAudio;
 
-        //is FMOD generally available, i.e. is Fixup version >= 4 and does subfolder AudioFMOD exist
+        //is FMOD generally available?
         public bool FMODAvailable;
 
         //is FMOD enabled, i.e. the parameter EnableFMOD in AudioFMOD.ini is set to true?
@@ -109,7 +109,6 @@ namespace RBRCIT
 
         public void UpdateFMOD()
         {
-            //FMODAvailable = Directory.Exists("AudioFMOD") && PluginExistsFixUp() && GetPluginVersionFixUp().CompareTo("4.0") >= 0;
             FMODAvailable = Directory.Exists("AudioFMOD");
             FMODEnabled = GetFMODStatusEnabled();
         }
@@ -809,38 +808,6 @@ namespace RBRCIT
             fd.ShowAtCenterParent(mainForm);
         }
 
-        public bool PluginExistsFixUp()
-        {
-            string pluginFileName = "Plugins\\FixUp.dll";
-            return (File.Exists(pluginFileName));
-        }
-
-        public string GetPluginVersionFixUp()
-        {
-            string pluginFileName = "Plugins\\FixUp.dll";
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(pluginFileName);
-            return fvi.ProductVersion;
-        }
-
-        public void DownloadPluginFixUp()
-        {
-            DownloadJob dj = new DownloadJob();
-            dj.title = "FixUp Plugin";
-            dj.path = ".";
-            dj.URL = carlist_ini.GetParameterValue("plugin_fixup4_url", "Plugins");
-
-            //legacy support for FixUp < v4
-            if (dj.URL == null)
-            {
-                dj.URL = carlist_ini.GetParameterValue("plugin_fixup_url", "Plugins");
-                dj.path = "Plugins\\";
-            }
-
-            FormDownload fd = new FormDownload(dj, this);
-            fd.FormClosed += FormDownloadClosedFixup;
-            fd.ShowAtCenterParent(mainForm);
-        }
-
         public void DownloadAudioFMOD()
         {
             DownloadJob dj = new DownloadJob();
@@ -902,8 +869,6 @@ namespace RBRCIT
             HelperFunctions.RemoveReadOnlyFlagInFolder("Physics\\school");
             CopyNGPPhysics(false, true);
 
-
-
             mainForm.UpdatePluginsPanel();
             mainForm.UpdateFMODPanel();
         }
@@ -918,13 +883,6 @@ namespace RBRCIT
             string oldFixup = "Plugins\\FixUp.dll";
             if (File.Exists(oldNGP)) File.Move(oldNGP, "Plugins\\backup\\PhysicsNG.dll");
             if (File.Exists(oldFixup)) File.Move(oldFixup, "Plugins\\backup\\FixUp.dll");
-        }
-
-        private void FormDownloadClosedFixup(object sender, FormClosedEventArgs e)
-        {
-            UpdateFMOD();
-            mainForm.UpdatePluginsPanel();
-            mainForm.UpdateFMODPanel();
         }
 
         private void FormDownloadClosedAudioFMOD(object sender, FormClosedEventArgs e)

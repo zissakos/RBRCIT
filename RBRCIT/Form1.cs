@@ -129,7 +129,6 @@ namespace RBRCIT
             }
 
             string version_ngp = "";
-            string version_fixup = "";
 
             if (rbrcit.PluginExistsNGP())
             {
@@ -146,31 +145,9 @@ namespace RBRCIT
                 btNGP.Text = "Download";
                 btNGPConfigure.Enabled = false;
             }
-            if (rbrcit.PluginExistsFixUp())
-            {
-                version_fixup = rbrcit.GetPluginVersionFixUp();
-                lblFixup.Text = version_fixup.Substring(0, version_fixup.IndexOf(' '));
-                lblFixUpDate.Text = version_fixup.Substring(version_fixup.IndexOf(' '));
-                btFixup.Text = "Update";
-                btFixupConfigure.Enabled = true;
-            }
-            else
-            {
-                lblFixup.Text = "(not found)";
-                lblFixUpDate.Text = "";
-                btFixup.Text = "Download";
-                btFixupConfigure.Enabled = false;
-                if (File.Exists(newpluginFileName))
-                {
-                    lblFixup.Text = "(now included in NGP plugin)";
-                    btFixup.Enabled = false;
-                }
 
-            }
-            
             //enable plugin buttons (in any case)
             btNGP.Enabled = true;
-            //btFixup.Enabled = true;
         }
 
         public void UpdateFMODPanel()
@@ -681,18 +658,6 @@ namespace RBRCIT
         private void btNGPConfigure_Click(object sender, EventArgs e)
         {
             Process.Start("RichardBurnsRally.ini");
-        }
-
-        private void btFixupDownload_Click(object sender, EventArgs e)
-        {
-            btFixup.Enabled = false;
-            rbrcit.DownloadPluginFixUp();
-        }
-
-        private void btFixupConfigure_Click(object sender, EventArgs e)
-        {
-            string filename = "Plugins\\FixUP.ini";
-            if (File.Exists(filename)) Process.Start(filename);
         }
 
         private void MenuExit_Click(object sender, EventArgs e)

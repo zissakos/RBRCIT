@@ -115,15 +115,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btLoadList = new RBRCIT.MenuButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btFixupConfigure = new System.Windows.Forms.Button();
-            this.btFixup = new System.Windows.Forms.Button();
             this.btNGPConfigure = new System.Windows.Forms.Button();
             this.btNGP = new System.Windows.Forms.Button();
-            this.lblFixup = new System.Windows.Forms.Label();
-            this.lblFixUpDate = new System.Windows.Forms.Label();
             this.lblNGPDate = new System.Windows.Forms.Label();
             this.lblNGP = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btSaveList = new System.Windows.Forms.Button();
@@ -574,7 +569,7 @@
             this.mySplitContainer1.Panel2.Controls.Add(this.btApply);
             this.mySplitContainer1.Panel2MinSize = 650;
             this.mySplitContainer1.Size = new System.Drawing.Size(1284, 660);
-            this.mySplitContainer1.SplitterDistance = 518;
+            this.mySplitContainer1.SplitterDistance = 514;
             this.mySplitContainer1.SplitterWidth = 8;
             this.mySplitContainer1.TabIndex = 11;
             // 
@@ -632,7 +627,7 @@
             this.olvAllCars.ShowCommandMenuOnRightClick = true;
             this.olvAllCars.ShowFilterMenuOnRightClick = false;
             this.olvAllCars.ShowItemCountOnGroups = true;
-            this.olvAllCars.Size = new System.Drawing.Size(500, 622);
+            this.olvAllCars.Size = new System.Drawing.Size(496, 622);
             this.olvAllCars.SpaceBetweenGroups = 16;
             this.olvAllCars.TabIndex = 0;
             this.olvAllCars.UseCellFormatEvents = true;
@@ -752,7 +747,7 @@
             this.groupBox2.Controls.Add(this.btFmodDisable);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.lblFMODStatus);
-            this.groupBox2.Location = new System.Drawing.Point(18, 464);
+            this.groupBox2.Location = new System.Drawing.Point(18, 430);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(728, 100);
             this.groupBox2.TabIndex = 14;
@@ -945,44 +940,17 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btFixupConfigure);
-            this.groupBox1.Controls.Add(this.btFixup);
             this.groupBox1.Controls.Add(this.btNGPConfigure);
             this.groupBox1.Controls.Add(this.btNGP);
-            this.groupBox1.Controls.Add(this.lblFixup);
-            this.groupBox1.Controls.Add(this.lblFixUpDate);
             this.groupBox1.Controls.Add(this.lblNGPDate);
             this.groupBox1.Controls.Add(this.lblNGP);
-            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(18, 360);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(728, 94);
+            this.groupBox1.Size = new System.Drawing.Size(728, 64);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Plugins";
-            // 
-            // btFixupConfigure
-            // 
-            this.btFixupConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixupConfigure.Location = new System.Drawing.Point(637, 59);
-            this.btFixupConfigure.Name = "btFixupConfigure";
-            this.btFixupConfigure.Size = new System.Drawing.Size(80, 23);
-            this.btFixupConfigure.TabIndex = 3;
-            this.btFixupConfigure.Text = "Configure";
-            this.btFixupConfigure.UseVisualStyleBackColor = true;
-            this.btFixupConfigure.Click += new System.EventHandler(this.btFixupConfigure_Click);
-            // 
-            // btFixup
-            // 
-            this.btFixup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btFixup.Location = new System.Drawing.Point(550, 59);
-            this.btFixup.Name = "btFixup";
-            this.btFixup.Size = new System.Drawing.Size(80, 23);
-            this.btFixup.TabIndex = 3;
-            this.btFixup.Text = "Update";
-            this.btFixup.UseVisualStyleBackColor = true;
-            this.btFixup.Click += new System.EventHandler(this.btFixupDownload_Click);
             // 
             // btNGPConfigure
             // 
@@ -1006,24 +974,6 @@
             this.btNGP.UseVisualStyleBackColor = true;
             this.btNGP.Click += new System.EventHandler(this.btNGPDownload_Click);
             // 
-            // lblFixup
-            // 
-            this.lblFixup.AutoSize = true;
-            this.lblFixup.Location = new System.Drawing.Point(61, 64);
-            this.lblFixup.Name = "lblFixup";
-            this.lblFixup.Size = new System.Drawing.Size(88, 13);
-            this.lblFixup.TabIndex = 1;
-            this.lblFixup.Text = "999.999.999.999";
-            // 
-            // lblFixUpDate
-            // 
-            this.lblFixUpDate.AutoSize = true;
-            this.lblFixUpDate.Location = new System.Drawing.Point(148, 64);
-            this.lblFixUpDate.Name = "lblFixUpDate";
-            this.lblFixUpDate.Size = new System.Drawing.Size(34, 13);
-            this.lblFixUpDate.TabIndex = 1;
-            this.lblFixUpDate.Text = "(date)";
-            // 
             // lblNGPDate
             // 
             this.lblNGPDate.AutoSize = true;
@@ -1041,15 +991,6 @@
             this.lblNGP.Size = new System.Drawing.Size(88, 13);
             this.lblNGP.TabIndex = 1;
             this.lblNGP.Text = "999.999.999.999";
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(6, 64);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "FixUp:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
@@ -1324,11 +1265,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblNGP;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblFixup;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btFixup;
         private System.Windows.Forms.Button btNGP;
-        private System.Windows.Forms.Button btFixupConfigure;
         private System.Windows.Forms.Button btNGPConfigure;
         private MenuButton btLoadList;
         private System.Windows.Forms.ContextMenuStrip contextLoadList;
@@ -1339,7 +1276,6 @@
         private System.Windows.Forms.ToolStripMenuItem MenuDownloadMissingPhysics;
         private System.Windows.Forms.ToolStripMenuItem MenuRestoreOriginalRBRCars;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Label lblFixUpDate;
         private System.Windows.Forms.Label lblNGPDate;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
