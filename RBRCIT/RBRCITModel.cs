@@ -331,6 +331,14 @@ namespace RBRCIT
 
         public bool AddCar(Car c, int slot)
         {
+            // If slot is not selected, slot is -1 and will throw ArgumentOutOfRangeException and crashes the program.
+            // This can be reproduced by clicking empty space next to car settings button and trying to install a car without slot selected.
+            if (slot < 0 || slot > 7)
+            {
+                MessageBox.Show("You need to select a slot before installing the car.");
+                return false;
+            }
+
             if (DesiredCarList[slot].nr == c.nr)
             {
                 MessageBox.Show("This car is already at the desired car slot.");
