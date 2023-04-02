@@ -39,8 +39,11 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbMirrorSteeringWheel = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbHideWindShield
@@ -160,6 +163,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Hide Parts";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cbMirrorSteeringWheel);
+            this.groupBox3.Location = new System.Drawing.Point(262, 126);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(162, 60);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Mirror Parts";
+            // 
+            // cbMirrorSteeringWheel
+            // 
+            this.cbMirrorSteeringWheel.AutoSize = true;
+            this.cbMirrorSteeringWheel.Location = new System.Drawing.Point(16, 28);
+            this.cbMirrorSteeringWheel.Name = "cbMirrorSteeringWheel";
+            this.cbMirrorSteeringWheel.Size = new System.Drawing.Size(124, 17);
+            this.cbMirrorSteeringWheel.TabIndex = 0;
+            this.cbMirrorSteeringWheel.Text = "Mirror Steering Wheel";
+            this.cbMirrorSteeringWheel.UseVisualStyleBackColor = true;
+            // 
             // FormCarSettings
             // 
             this.AcceptButton = this.btSave;
@@ -167,6 +190,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(438, 371);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btCancel);
@@ -180,6 +204,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -197,5 +223,7 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox cbMirrorSteeringWheel;
     }
 }
